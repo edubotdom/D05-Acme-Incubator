@@ -1,5 +1,5 @@
 /*
- * AnonymousUserAccountRepository.java
+ * AuthenticatedPatronRepository.java
  *
  * Copyright (c) 2019 Rafael Corchuelo.
  *
@@ -10,33 +10,25 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.patron.card;
-
-import java.util.Collection;
+package acme.features.authenticated.patron;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import acme.entities.banners.Banner;
-import acme.entities.cards.Card;
 import acme.entities.roles.Patron;
+import acme.framework.entities.UserAccount;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
-public interface PatronCardRepository extends AbstractRepository {
+public interface AuthenticatedPatronRepository extends AbstractRepository {
 
-	@Query("select n from Card n")
-	Collection<Card> findMany();
+	@Query("select ua from UserAccount ua where ua.id = ?1")
+	UserAccount findOneUserAccountById(int id);
 
-	@Query("select n from Card n where n.id = ?1")
-	Card findOneById(int id);
+	@Query("select e from Patron e where e.userAccount.id = ?1")
+	Patron findOnePatronByUserAccountId(int id);
 
-	@Query("select n from Banner n where n.id = ?1")
-	Banner findOneBannerById(int id);
+	@Query("select e from Patron e where e.id = ?1")
+	Patron findOnePatronById(int id);
 
-	@Query("select n from Banner n where n.card.id = ?1")
-	Collection<Banner> findBannersByCard(int id);
-
-	@Query("select n from Patron n where n.card.id = ?1")
-	Collection<Patron> findPatronsByCard(int id);
 }

@@ -2,6 +2,7 @@
 package acme.entities.roles;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
@@ -24,10 +25,12 @@ public class Patron extends UserRole {
 	@NotBlank
 	private String				organisation;
 
-	@Valid
-	private Card				card;
-
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
+
+	@ManyToOne
+	@Valid
+	private Card				card;
+
 }

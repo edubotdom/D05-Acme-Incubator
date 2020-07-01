@@ -1,42 +1,41 @@
 
 package acme.features.patron.card;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.banners.Banner;
 import acme.entities.cards.Card;
 import acme.entities.roles.Patron;
+import acme.features.authenticated.patron.AuthenticatedPatronRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.services.AbstractUpdateService;
+import acme.framework.services.AbstractCreateService;
 
 @Service
-public class PatronCardUpdateService implements AbstractUpdateService<Patron, Card> {
+public class PatronCardAssociateService implements AbstractCreateService<Patron, Card> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	PatronCardRepository repository;
+	PatronCardRepository			repository;
+
+	@Autowired
+	AuthenticatedPatronRepository	patronRepository;
 
 
 	@Override
 	public boolean authorise(final Request<Card> request) {
 		assert request != null;
+		Integer patronId = request.getModel().getInteger("id");
+		if (patronId == null || patronId.equals(0)) {
+			patronId = request.getModel().getInteger("id_patron");
+		}
+		Patron patron = this.patronRepository.findOnePatronById(patronId);
 
-		int idCard = request.getModel().getInteger("id");
-		//Si Patron quiere mostrar una tarjeta de un Banner
-		List<Banner> banners = new ArrayList<>(this.repository.findBannersByCard(idCard));
-		boolean bannerCard = banners.stream().map(b -> b.getPatron().getUserAccount().getId()).anyMatch(i -> i.equals(request.getPrincipal().getAccountId()));
-		//Si Patron quiere mostrar una tarjeta suya
-		List<Patron> patrons = new ArrayList<>(this.repository.findPatronsByCard(idCard));
-		boolean patronCard = patrons.stream().map(b -> b.getUserAccount().getId()).anyMatch(i -> i.equals(request.getPrincipal().getAccountId()));
+		boolean emptyCard = patron.getCard() == null;
 
-		return bannerCard || patronCard;
+		return emptyCard;
 	}
 
 	@Override
@@ -55,18 +54,16 @@ public class PatronCardUpdateService implements AbstractUpdateService<Patron, Ca
 		assert entity != null;
 		assert model != null;
 
+		Integer patronId = request.getModel().getInteger("id");
+		model.setAttribute("id_patron", patronId);
+
 		request.unbind(entity, model, "holder", "number", "brand", "cvv");
 	}
 
 	@Override
-	public Card findOne(final Request<Card> request) {
-		assert request != null;
-
+	public Card instantiate(final Request<Card> request) {
 		Card result;
-		int id;
-
-		id = request.getModel().getInteger("id");
-		result = this.repository.findOneById(id);
+		result = new Card();
 
 		return result;
 	}
@@ -80,9 +77,14 @@ public class PatronCardUpdateService implements AbstractUpdateService<Patron, Ca
 	}
 
 	@Override
-	public void update(final Request<Card> request, final Card entity) {
+	public void create(final Request<Card> request, final Card entity) {
+
+		Integer patronId = request.getModel().getInteger("id_patron").intValue();
+		Patron patron = this.patronRepository.findOnePatronById(patronId);
+		patron.setCard(entity);
 
 		this.repository.save(entity);
+		this.patronRepository.save(patron);
 
 	}
 
