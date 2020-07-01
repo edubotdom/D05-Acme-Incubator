@@ -69,6 +69,10 @@
 
     alter table `patron` 
        drop 
+       foreign key `FKg7e21f3lqp5ubpiiwvcgpeiqy`;
+
+    alter table `patron` 
+       drop 
        foreign key FK_8xx5nujhuio3advxc2freyu65;
 
     alter table `provider` 

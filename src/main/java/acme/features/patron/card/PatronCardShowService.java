@@ -29,9 +29,14 @@ public class PatronCardShowService implements AbstractShowService<Patron, Card> 
 		assert request != null;
 
 		int idCard = request.getModel().getInteger("id");
+		//Si Patron quiere mostrar una tarjeta de un Banner
 		List<Banner> banners = new ArrayList<>(this.repository.findBannersByCard(idCard));
+		boolean bannerCard = banners.stream().map(b -> b.getPatron().getUserAccount().getId()).anyMatch(i -> i.equals(request.getPrincipal().getAccountId()));
+		//Si Patron quiere mostrar una tarjeta suya
+		List<Patron> patrons = new ArrayList<>(this.repository.findPatronsByCard(idCard));
+		boolean patronCard = patrons.stream().map(b -> b.getUserAccount().getId()).anyMatch(i -> i.equals(request.getPrincipal().getAccountId()));
 
-		return banners.stream().map(b -> b.getPatron().getUserAccount().getId()).anyMatch(i -> i.equals(request.getPrincipal().getAccountId()));
+		return bannerCard || patronCard;
 	}
 
 	@Override

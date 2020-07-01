@@ -1,5 +1,5 @@
 /*
- * AnonymousUserAccountController.java
+ * AuthenticatedEmployerController.java
  *
  * Copyright (c) 2019 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.patron.card;
+package acme.features.authenticated.investor;
 
 import javax.annotation.PostConstruct;
 
@@ -18,43 +18,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import acme.components.CustomCommand;
-import acme.entities.cards.Card;
-import acme.entities.roles.Patron;
+import acme.entities.roles.Investor;
 import acme.framework.components.BasicCommand;
 import acme.framework.controllers.AbstractController;
+import acme.framework.entities.Authenticated;
 
 @Controller
-@RequestMapping("/patron/card/")
-public class PatronCardController extends AbstractController<Patron, Card> {
+@RequestMapping("/authenticated/investor/")
+public class AuthenticatedInvestorController extends AbstractController<Authenticated, Investor> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private PatronCardShowService		showService;
+	private AuthenticatedInvestorCreateService	createService;
 
 	@Autowired
-	private PatronCardCreateService		createService;
-
-	@Autowired
-	private PatronCardAssociateService	associateService;
-
-	@Autowired
-	private PatronCardUpdateService		updateService;
-
-	@Autowired
-	private PatronCardDeleteService		deleteService;
+	private AuthenticatedInvestorUpdateService	updateService;
 
 
 	// Constructors -----------------------------------------------------------
 
 	@PostConstruct
 	private void initialise() {
-		super.addBasicCommand(BasicCommand.SHOW, this.showService);
 		super.addBasicCommand(BasicCommand.CREATE, this.createService);
 		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
-		super.addBasicCommand(BasicCommand.DELETE, this.deleteService);
-		super.addCustomCommand(CustomCommand.ASSOCIATE, BasicCommand.CREATE, this.associateService);
 	}
 
 }

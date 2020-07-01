@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import acme.entities.banners.Banner;
 import acme.entities.cards.Card;
 import acme.entities.roles.Patron;
+import acme.features.authenticated.patron.AuthenticatedPatronRepository;
 import acme.features.patron.banner.PatronBannerRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
@@ -20,9 +21,11 @@ import acme.framework.services.AbstractDeleteService;
 public class PatronCardDeleteService implements AbstractDeleteService<Patron, Card> {
 
 	@Autowired
-	PatronCardRepository	repository;
+	PatronCardRepository			repository;
 	@Autowired
-	PatronBannerRepository	bannerRepository;
+	PatronBannerRepository			bannerRepository;
+	@Autowired
+	AuthenticatedPatronRepository	patronRepository;
 
 
 	@Override
@@ -30,9 +33,14 @@ public class PatronCardDeleteService implements AbstractDeleteService<Patron, Ca
 		assert request != null;
 
 		int idCard = request.getModel().getInteger("id");
+		//Si Patron quiere mostrar una tarjeta de un Banner
 		List<Banner> banners = new ArrayList<>(this.repository.findBannersByCard(idCard));
+		boolean bannerCard = banners.stream().map(b -> b.getPatron().getUserAccount().getId()).anyMatch(i -> i.equals(request.getPrincipal().getAccountId()));
+		//Si Patron quiere mostrar una tarjeta suya
+		List<Patron> patrons = new ArrayList<>(this.repository.findPatronsByCard(idCard));
+		boolean patronCard = patrons.stream().map(b -> b.getUserAccount().getId()).anyMatch(i -> i.equals(request.getPrincipal().getAccountId()));
 
-		return banners.stream().map(b -> b.getPatron().getUserAccount().getId()).anyMatch(i -> i.equals(request.getPrincipal().getAccountId()));
+		return bannerCard || patronCard;
 	}
 
 	@Override
@@ -77,14 +85,19 @@ public class PatronCardDeleteService implements AbstractDeleteService<Patron, Ca
 		assert entity != null;
 
 		List<Banner> banners = new ArrayList<>(this.repository.findBannersByCard(entity.getId()));
+		List<Patron> patrons = new ArrayList<>(this.repository.findPatronsByCard(entity.getId()));
 
 		for (Banner b : banners) {
 			b.setCard(null);
 			this.bannerRepository.save(b);
-
 		}
 
-		//this.repository.delete(entity);
+		for (Patron p : patrons) {
+			p.setCard(null);
+			this.patronRepository.save(p);
+		}
+
+		this.repository.delete(entity);
 	}
 
 }

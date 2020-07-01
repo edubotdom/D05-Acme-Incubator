@@ -217,8 +217,8 @@
        `id` integer not null,
         `version` integer not null,
         `user_account_id` integer,
-        `card` tinyblob,
         `organisation` varchar(255),
+        `card_id` integer,
         primary key (`id`)
     ) engine=InnoDB;
 
@@ -401,6 +401,11 @@ create index IDXdr92l3mhgfgkeoplifnv5x2fp on `tool` (`sector`);
        add constraint `FKik4epe9dp5q6uenarfyia7xin` 
        foreign key (`user_id`) 
        references `authenticated` (`id`);
+
+    alter table `patron` 
+       add constraint `FKg7e21f3lqp5ubpiiwvcgpeiqy` 
+       foreign key (`card_id`) 
+       references `card` (`id`);
 
     alter table `patron` 
        add constraint FK_8xx5nujhuio3advxc2freyu65 
