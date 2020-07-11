@@ -22,9 +22,21 @@
 		<acme:form-money code="entrepreneur.activity.form.label.budget" path="budget"/>		
 	
 	<acme:form-hidden path="direccionActivity" />
+	<acme:form-hidden path="isFinalMode" />
+	
 	
 	<jstl:if test="${command == 'create' }">
 		<acme:form-submit code="entrepreneur.activity.form.button.create" action="${direccionActivity}" />
+	</jstl:if>
+
+	<jstl:if test="${isFinalMode=='false'}">
+		<acme:form-submit test="${command == 'show' || command == 'update'}" code="entrepreneur.round.form.button.update"
+			action="/entrepreneur/activity/update" />
+	</jstl:if>
+
+	<jstl:if test="${isFinalMode=='false'}">
+		<acme:form-submit test="${command == 'show' || command == 'update' || command == 'delete'}" code="entrepreneur.round.form.button.delete"
+			action="/entrepreneur/activity/delete" />
 	</jstl:if>
 
 	<acme:form-return code="entrepreneur.activity.form.button.return" />

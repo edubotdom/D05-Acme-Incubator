@@ -24,7 +24,10 @@ public class BookkeeperAccountingCreateService implements AbstractCreateService<
 	@Override
 	public boolean authorise(final Request<Accounting> request) {
 		assert request != null;
-		return true;
+
+		Round round = this.repository.findOneRoundById(request.getModel().getInteger("id"));
+
+		return !round.isStatus();
 	}
 
 	@Override

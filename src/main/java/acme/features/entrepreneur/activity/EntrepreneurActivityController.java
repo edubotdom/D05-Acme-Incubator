@@ -28,6 +28,12 @@ public class EntrepreneurActivityController extends AbstractController<Entrepren
 	@Autowired
 	private EntrepreneurActivityCreateService	createService;
 
+	@Autowired
+	private EntrepreneurActivityUpdateService	updateService;
+
+	@Autowired
+	private EntrepreneurActivityDeleteService	deleteService;
+
 
 	// Constructors -----------------------------------------------------------
 
@@ -36,6 +42,8 @@ public class EntrepreneurActivityController extends AbstractController<Entrepren
 		super.addCustomCommand(CustomCommand.LIST_BY_ROUND, BasicCommand.LIST, this.listService);
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
 		super.addBasicCommand(BasicCommand.CREATE, this.createService);
+		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
+		super.addBasicCommand(BasicCommand.DELETE, this.deleteService);
 
 	}
 

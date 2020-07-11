@@ -29,13 +29,13 @@ public interface BookkeeperRoundRepository extends AbstractRepository {
 	@Query("select j from Round j where j.id = ?1")
 	Round findOneRoundById(int id);
 
-	@Query("select j from Round j where exists(select a from Activity a where(a.round.id=j.id AND a.end>CURRENT_TIMESTAMP))")
+	@Query("select j from Round j where exists(select a from Activity a where(a.round.id=j.id AND a.end>CURRENT_TIMESTAMP) AND j.status='1')")
 	Collection<Round> findManyActive();
 
-	@Query("select j from Round j where exists(select a from Accounting a where(a.round.id=j.id AND a.bookkeeper.userAccount.id=?1))")
+	@Query("select j from Round j where j.status='1' AND exists(select a from Accounting a where(a.round.id=j.id AND a.bookkeeper.userAccount.id=?1))")
 	Collection<Round> findManyAccounted(int id);
 
-	@Query("select j from Round j where not exists(select a from Accounting a where(a.round.id=j.id AND a.bookkeeper.userAccount.id=?1))")
+	@Query("select j from Round j where j.status='1' AND not exists(select a from Accounting a where(a.round.id=j.id AND a.bookkeeper.userAccount.id=?1))")
 	Collection<Round> findManyNotAccounted(int id);
 
 	@Query("select a from Accounting a where a.round.id=?1")
