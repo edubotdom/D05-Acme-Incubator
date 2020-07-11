@@ -240,6 +240,7 @@
         `kind` varchar(255),
         `money_amount` double precision,
         `money_currency` varchar(255),
+        `status` bit not null,
         `ticker` varchar(255),
         `title` varchar(255),
         `entrepreneur_id` integer not null,
@@ -306,6 +307,7 @@ create index IDX9u3lu85o98y0tro95qasghg8e on `inquiry` (`deadline`);
 create index IDXrcpel5hblr62lfjr9gmpk2wgi on `notice` (`deadline`);
 create index IDX3ianip0mmnj1316lpeas2yw71 on `overture` (`deadline`);
 create index IDXpn2uodr1wcmonf4mb9juy7loh on `round` (`kind`);
+create index IDXl4saxyssjbvy3lehycgtyo9mx on `round` (`status`);
 
     alter table `round` 
        add constraint UK_g4u8ufh14qv6lmr5mwiulyinh unique (`ticker`);

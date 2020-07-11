@@ -47,7 +47,7 @@ public class EntrepreneurRoundCreateService implements AbstractCreateService<Ent
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "ticker", "creation", "kind", "title", "description", "money", "information", "entrepreneur");
+		request.unbind(entity, model, "ticker", "creation", "kind", "title", "description", "money", "information", "status", "entrepreneur");
 	}
 
 	@Override
@@ -64,6 +64,7 @@ public class EntrepreneurRoundCreateService implements AbstractCreateService<Ent
 		result = new Round();
 		result.setEntrepreneur(entrepreneur);
 		result.setCreation(date);
+		result.setStatus(false);
 		return result;
 	}
 

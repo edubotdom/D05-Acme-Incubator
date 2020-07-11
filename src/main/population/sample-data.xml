@@ -879,6 +879,7 @@
 		<property name="description" value="Description01" />
 		<property name="money" value="50000€" />		
 		<property name="information" value="http://www.lsi.us.es/" />
+		<property name="status" value="true" />		
 		<property name="entrepreneur" ref="entrepreneur1"/>
 	</bean>
 	
@@ -890,6 +891,7 @@
 		<property name="description" value="Description02" />
 		<property name="money" value="5000€" />		
 		<property name="information" value="http://www.lsi.us.es/" />
+		<property name="status" value="true" />			
 		<property name="entrepreneur" ref="entrepreneur2"/>
 	</bean>
 	
@@ -901,6 +903,7 @@
 		<property name="description" value="Description03" />
 		<property name="money" value="15000€" />		
 		<property name="information" value="http://www.lsi.us.es/" />
+		<property name="status" value="true" />			
 		<property name="entrepreneur" ref="entrepreneur2"/>
 	</bean>	
 	

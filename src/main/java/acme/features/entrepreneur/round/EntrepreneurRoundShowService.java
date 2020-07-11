@@ -71,7 +71,12 @@ public class EntrepreneurRoundShowService implements AbstractShowService<Entrepr
 		boolean budgetFullfilled = budgetSum >= entity.getMoney().getAmount();
 		model.setAttribute("budgetFulfilled", budgetFullfilled);
 
-		request.unbind(entity, model, "ticker", "creation", "kind", "title", "description", "money", "information", "entrepreneur");
+		boolean roundApplied = this.repository.findManyApplicationsByRound(request.getModel().getInteger("id")).size() == 0;
+		model.setAttribute("roundApplied", roundApplied);
+
+		model.setAttribute("isFinalMode", entity.isStatus());
+
+		request.unbind(entity, model, "ticker", "creation", "kind", "title", "description", "money", "information", "status", "entrepreneur");
 	}
 
 	@Override

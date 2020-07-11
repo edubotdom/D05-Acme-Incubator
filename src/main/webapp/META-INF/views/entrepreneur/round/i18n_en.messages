@@ -17,6 +17,9 @@ entrepreneur.round.form.label.title = Title:
 entrepreneur.round.form.label.description = Description:
 entrepreneur.round.form.label.money = Amount of money:
 entrepreneur.round.form.label.information = Information:
+entrepreneur.round.form.label.status = Status:
+entrepreneur.round.form.label.draft = Draft
+entrepreneur.round.form.label.published = Published
 
 entrepreneur.round.form.label.kind = Kind of the investment:
 entrepreneur.round.form.label.kind0 = Seed
@@ -31,6 +34,8 @@ entrepreneur.round.form.button.createActivities = Create activities
 entrepreneur.round.form.button.activitiesList = List Activities
 
 entrepreneur.round.form.button.create = Create
+entrepreneur.round.form.button.update = Update
+entrepreneur.round.form.button.delete = Delete
 
 entrepreneur.round.form.button.return = Return
 
@@ -38,3 +43,6 @@ entrepreneur.round.incorrectKind = Kind of investment invalid.
 entrepreneur.round.incorrectYearOfTicker = Ticker format is not correct, as the 2 last numbers of the year must be typed in the second part.
 entrepreneur.round.incorrect-currency = Currency must be Euro.
 entrepreneur.round.repeatedTicker = Ticker identification must be unique.
+entrepreneur.round.activitiesBudgetNotMatchRoundMoney = Before publishing, check activities budget match round money
+entrepreneur.round.spamInText = No puede introducir palabras restringidas en este campo
+entrepreneur.round.roundWithApplicationsCantBeDeleted = No puede eliminar rondas de inversión con aplicaciones

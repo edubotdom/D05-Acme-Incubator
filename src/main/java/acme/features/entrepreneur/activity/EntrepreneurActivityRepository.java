@@ -18,6 +18,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.entities.activities.Activity;
+import acme.entities.customization.Customization;
 import acme.entities.rounds.Round;
 import acme.framework.repositories.AbstractRepository;
 
@@ -35,5 +36,8 @@ public interface EntrepreneurActivityRepository extends AbstractRepository {
 
 	@Query("select d from Activity d where d.round.id = ?1")
 	Collection<Activity> findManyByRound(int id);
+
+	@Query("select c from Customization c")
+	Customization findCustomization();
 
 }

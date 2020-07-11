@@ -26,7 +26,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(indexes = {
-	@Index(columnList = "kind")
+	@Index(columnList = "kind"), @Index(columnList = "status")
 })
 public class Round extends DomainEntity {
 
@@ -60,6 +60,9 @@ public class Round extends DomainEntity {
 	@NotBlank
 	@URL
 	private String				information;
+
+	@NotNull
+	private boolean				status;
 
 	@NotNull
 	@Valid
