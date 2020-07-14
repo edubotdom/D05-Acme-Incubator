@@ -19,6 +19,7 @@ investor.application.form.label.statement = Declaración:
 investor.application.form.label.offer = Oferta monetaria de inversión:
 investor.application.form.label.investor = Inversor:
 investor.application.form.label.status = Estado:
+investor.application.form.label.justification = Justificación:
 
 investor.application.form.label.status.accepted= Aceptado
 investor.application.form.label.status.rejected = Rechazado

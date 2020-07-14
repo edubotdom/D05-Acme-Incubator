@@ -48,9 +48,9 @@ public class InvestorApplicationShowService implements AbstractShowService<Inves
 		String roundCreator = entity.getRound().getEntrepreneur().getUserAccount().getUsername();
 		model.setAttribute("roundCreator", roundCreator);
 		String investor = entity.getInvestor().getUserAccount().getUsername();
-		model.setAttribute("investor", investor);
+		model.setAttribute("investorName", investor);
 
-		request.unbind(entity, model, "ticker", "creation", "statement", "offer", "status");
+		request.unbind(entity, model, "ticker", "creation", "statement", "offer", "status", "justification");
 
 	}
 

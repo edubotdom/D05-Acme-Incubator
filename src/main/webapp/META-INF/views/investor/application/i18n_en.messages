@@ -16,9 +16,10 @@ investor.application.form.label.roundTicker = Identification ticker of the round
 investor.application.form.label.roundCreator = Investment round creator:
 investor.application.form.label.creation = Creation date:
 investor.application.form.label.statement = Statement:
-investor.application.form.label.offer = Invesment money offer:
+investor.application.form.label.offer = Investment money offer:
 investor.application.form.label.investor = Investor:
 investor.application.form.label.status = Status:
+investor.application.form.label.justification = Justification
 
 investor.application.form.label.status.accepted= Accepted
 investor.application.form.label.status.rejected = Rejected
