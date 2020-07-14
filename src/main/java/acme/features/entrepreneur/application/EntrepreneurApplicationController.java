@@ -18,15 +18,23 @@ import acme.framework.controllers.AbstractController;
 public class EntrepreneurApplicationController extends AbstractController<Entrepreneur, Application> {
 
 	@Autowired
-	private EntrepreneurApplicationListMineService	listMineService;
+	private EntrepreneurApplicationListMineService					listMineService;
 
 	@Autowired
-	private EntrepreneurApplicationShowService		showService;
+	private EntrepreneurApplicationListMineByCreationDateService	listMineByCreationDateService;
+
+	@Autowired
+	private EntrepreneurApplicationListMineByTickerService			listMineByTickerService;
+
+	@Autowired
+	private EntrepreneurApplicationShowService						showService;
 
 
 	@PostConstruct
 	private void initialise() {
 		super.addCustomCommand(CustomCommand.LIST_MINE, BasicCommand.LIST, this.listMineService);
+		super.addCustomCommand(CustomCommand.LIST_MINE_BY_CREATION, BasicCommand.LIST, this.listMineByCreationDateService);
+		super.addCustomCommand(CustomCommand.LIST_MINE_BY_TICKER, BasicCommand.LIST, this.listMineByTickerService);
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
 	}
 }

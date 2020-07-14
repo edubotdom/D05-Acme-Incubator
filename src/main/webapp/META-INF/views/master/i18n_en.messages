@@ -92,6 +92,8 @@ master.menu.entrepreneur = Entrepreneur
 master.menu.entrepreneur.listRounds = List my investment rounds
 master.menu.entrepreneur.createRound = Create a new investment round
 master.menu.entrepreneur.listApplications = List applications to my investment rounds
+master.menu.entrepreneur.listApplicationsByCreation = List applications to my investment rounds by date
+master.menu.entrepreneur.listApplicationsByTicker = List applications to my investment rounds by ticker
 
 # master.menu.bookkeeper ######################################################
 

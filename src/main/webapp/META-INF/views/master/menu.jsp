@@ -101,7 +101,8 @@
 			<acme:menu-suboption code="master.menu.entrepreneur.createRound" action="/entrepreneur/round/create"/>			
 			<!-- Application to investment rounds' links -->
 			<acme:menu-suboption code="master.menu.entrepreneur.listApplications" action="/entrepreneur/application/list_mine"/>
-
+			<acme:menu-suboption code="master.menu.entrepreneur.listApplicationsByCreation" action="/entrepreneur/application/list_mine_by_creation"/>
+			<acme:menu-suboption code="master.menu.entrepreneur.listApplicationsByTicker" action="/entrepreneur/application/list_mine_by_ticker"/>
 		</acme:menu-option>
 		
 		
