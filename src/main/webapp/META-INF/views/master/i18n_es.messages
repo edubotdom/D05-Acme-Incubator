@@ -89,6 +89,8 @@ master.menu.entrepreneur = Emprendedor
 master.menu.entrepreneur.listRounds = Listar mis rondas de inversión
 master.menu.entrepreneur.createRound = Crear nueva ronda de inversión
 master.menu.entrepreneur.listApplications = Listar aplicaciones a mis rondas de inversión
+master.menu.entrepreneur.listApplicationsByCreation = Listar aplicaciones a mis rondas de inversión por fecha
+master.menu.entrepreneur.listApplicationsByTicker = Listar aplicaciones a mis rondas de inversión por identificador
 
 # master.menu.bookkeeper ######################################################
 
