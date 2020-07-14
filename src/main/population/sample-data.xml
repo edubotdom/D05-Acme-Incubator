@@ -913,7 +913,8 @@
 		<property name="creation" value="2019/12/10 16:00" />
 		<property name="statement" value="Statement01" />
 		<property name="offer" value="35000€" />	
-		<property name="status" value="accepted" />	
+		<property name="status" value="accepted" />
+		<property name="justification"> <null /></property>
 		<property name="round" ref="round01"/>
 		<property name="investor" ref="investor1"/>
 	</bean>
@@ -923,7 +924,8 @@
 		<property name="creation" value="2019/05/11 19:10" />
 		<property name="statement" value="Statement02" />
 		<property name="offer" value="25000€" />	
-		<property name="status" value="rejected" />	
+		<property name="status" value="rejected" />
+		<property name="justification" value="Justification 1"/>	
 		<property name="round" ref="round01"/>
 		<property name="investor" ref="investor1"/>
 	</bean>
@@ -933,7 +935,8 @@
 		<property name="creation" value="2019/10/15 21:56" />
 		<property name="statement" value="Statement03" />
 		<property name="offer" value="5500€" />	
-		<property name="status" value="accepted" />	
+		<property name="status" value="accepted" />
+		<property name="justification" value="Justification 2"/>			
 		<property name="round" ref="round02"/>
 		<property name="investor" ref="investor2"/>
 	</bean>
@@ -944,6 +947,7 @@
 		<property name="statement" value="Statement04" />
 		<property name="offer" value="27000€" />	
 		<property name="status" value="rejected" />	
+		<property name="justification" value="Justification 3"/>
 		<property name="round" ref="round01"/>
 		<property name="investor" ref="investor2"/>
 	</bean>

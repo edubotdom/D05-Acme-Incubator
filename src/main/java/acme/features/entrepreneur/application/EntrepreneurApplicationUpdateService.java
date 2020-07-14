@@ -6,13 +6,14 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.applications.Application;
 import acme.entities.roles.Entrepreneur;
+import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Principal;
-import acme.framework.services.AbstractShowService;
+import acme.framework.services.AbstractUpdateService;
 
 @Service
-public class EntrepreneurApplicationShowService implements AbstractShowService<Entrepreneur, Application> {
+public class EntrepreneurApplicationUpdateService implements AbstractUpdateService<Entrepreneur, Application> {
 
 	@Autowired
 	EntrepreneurApplicationRepository repository;
@@ -34,7 +35,7 @@ public class EntrepreneurApplicationShowService implements AbstractShowService<E
 		principal = request.getPrincipal();
 		result = entrepreneur.getUserAccount().getId() == principal.getAccountId();
 
-		return result;
+		return result && application.getStatus().equals("pending");
 	}
 
 	@Override
@@ -70,6 +71,35 @@ public class EntrepreneurApplicationShowService implements AbstractShowService<E
 		result = this.repository.findOneApplicationById(id);
 
 		return result;
+	}
+
+	@Override
+	public void bind(final Request<Application> request, final Application entity, final Errors errors) {
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
+
+		request.bind(entity, errors);
+	}
+
+	@Override
+	public void validate(final Request<Application> request, final Application entity, final Errors errors) {
+		if (!entity.getStatus().isEmpty()) {
+			boolean justificationRestrictionPassed = true;
+			if (entity.getStatus().equals("rejected") && entity.getJustification().isEmpty()) {
+				justificationRestrictionPassed = false;
+			}
+			errors.state(request, justificationRestrictionPassed, "justification", "investor.application.provideJustification");
+
+		}
+	}
+
+	@Override
+	public void update(final Request<Application> request, final Application entity) {
+		assert request != null;
+		assert entity != null;
+
+		this.repository.save(entity);
 	}
 
 }

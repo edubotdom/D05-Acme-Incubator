@@ -28,7 +28,7 @@ public interface AuthenticatedRoundRepository extends AbstractRepository {
 	@Query("select j from Round j where j.id = ?1")
 	Round findOneRoundById(int id);
 
-	@Query("select j from Round j where exists(select a from Activity a where(a.round.id=j.id AND a.end>CURRENT_TIMESTAMP AND j.status='1'))")
+	@Query("select j from Round j where exists(select a from Activity a where(a.round.id=j.id AND a.end>CURRENT_TIMESTAMP AND j.status=1))")
 	Collection<Round> findManyActive();
 
 	@Query("select e from Entrepreneur e where e.userAccount.id= ?1")

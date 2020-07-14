@@ -41,6 +41,7 @@
        `id` integer not null,
         `version` integer not null,
         `creation` datetime(6),
+        `justification` varchar(255),
         `offer_amount` double precision,
         `offer_currency` varchar(255),
         `statement` varchar(255),
@@ -295,6 +296,8 @@
 create index IDXfmpdf5k3txn94kwvoi2m1jge4 on `accounting` (`status`);
 create index IDX7w050mi7toy4boa363tvcxr2w on `activity` (`end`);
 create index IDX2q2747fhp099wkn3j2yt05fhs on `application` (`status`);
+create index IDX6fmsp547p4ql4cgit2hk0uxjs on `application` (`creation`);
+create index IDXj1shjic6mip5nyik4ywhvxiid on `application` (`ticker`);
 
     alter table `application` 
        add constraint UK_ao7wxw7e7mkj6g5q49yq2fw8d unique (`ticker`);

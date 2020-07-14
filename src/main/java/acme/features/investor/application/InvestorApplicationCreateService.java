@@ -34,13 +34,16 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 
 		boolean result;
 		int roundId;
+		Round round;
+
 		Collection<Activity> activities;
 		Date date = new Date();
 		roundId = request.getModel().getInteger("id");
+		round = this.roundRepository.findOneRoundById(roundId);
 		activities = this.repository.findManyActivitiesByRound(roundId);
 		result = activities.stream().map(m -> m.getEnd()).anyMatch(f -> f.compareTo(date) > 0);
 
-		return result;
+		return result && round.isStatus();
 	}
 
 	@Override
@@ -61,7 +64,7 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 		String direccionApplication = "../application/create?id=" + request.getModel().getInteger("id");
 		model.setAttribute("direccionApplication", direccionApplication);
 
-		request.unbind(entity, model, "ticker", "creation", "statement", "offer"/* , "round", "investor" */);
+		request.unbind(entity, model, "ticker", "creation", "statement", "offer", "justification", "status"/* , "round", "investor" */);
 	}
 
 	@Override

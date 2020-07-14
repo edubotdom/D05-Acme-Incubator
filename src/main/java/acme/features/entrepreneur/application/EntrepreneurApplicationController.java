@@ -29,6 +29,9 @@ public class EntrepreneurApplicationController extends AbstractController<Entrep
 	@Autowired
 	private EntrepreneurApplicationShowService						showService;
 
+	@Autowired
+	private EntrepreneurApplicationUpdateService					updateService;
+
 
 	@PostConstruct
 	private void initialise() {
@@ -36,5 +39,6 @@ public class EntrepreneurApplicationController extends AbstractController<Entrep
 		super.addCustomCommand(CustomCommand.LIST_MINE_BY_CREATION, BasicCommand.LIST, this.listMineByCreationDateService);
 		super.addCustomCommand(CustomCommand.LIST_MINE_BY_TICKER, BasicCommand.LIST, this.listMineByTickerService);
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
+		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
 	}
 }
