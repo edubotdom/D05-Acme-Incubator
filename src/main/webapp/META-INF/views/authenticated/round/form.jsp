@@ -28,6 +28,7 @@ s not guaranteed for any particular
 	
 		<acme:form-return code="authenticated.round.form.button.accountingList" action="${accountingList}" />
 		<acme:form-return code="authenticated.round.form.button.activitiesList" action="${roundListActivities}" />
+		<acme:form-return code="authenticated.round.form.button.createForum" action="${createForum}" />
 		
 	<acme:form-return code="authenticated.round.form.button.return" />
 </acme:form>

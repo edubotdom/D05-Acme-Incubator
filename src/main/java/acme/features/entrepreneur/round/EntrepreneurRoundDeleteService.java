@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.accountings.Accounting;
 import acme.entities.activities.Activity;
-import acme.entities.forums.Forum;
 import acme.entities.roles.Entrepreneur;
 import acme.entities.rounds.Round;
-import acme.features.authenticated.forum.AuthenticatedForumRepository;
 import acme.features.entrepreneur.accounting.EntrepreneurAccountingRepository;
 import acme.features.entrepreneur.activity.EntrepreneurActivityRepository;
 import acme.framework.components.Errors;
@@ -30,8 +28,10 @@ public class EntrepreneurRoundDeleteService implements AbstractDeleteService<Ent
 	EntrepreneurActivityRepository		activityRepository;
 	@Autowired
 	EntrepreneurAccountingRepository	accountingRepository;
-	@Autowired
-	AuthenticatedForumRepository		forumRepository;
+	/*
+	 * @Autowired
+	 * AuthenticatedForumRepository forumRepository;
+	 */
 
 
 	@Override
@@ -106,12 +106,12 @@ public class EntrepreneurRoundDeleteService implements AbstractDeleteService<Ent
 		for (Accounting a : accountings) {
 			this.accountingRepository.delete(a);
 		}
-
-		List<Forum> forums = new ArrayList<>(this.repository.findManyForumByRound(entity.getId()));
-		for (Forum a : forums) {
-			this.forumRepository.delete(a);
-		}
-
+		/*
+		 * List<Forum> forums = new ArrayList<>(this.repository.findManyForumByRound(entity.getId()));
+		 * for (Forum a : forums) {
+		 * this.forumRepository.delete(a);
+		 * }
+		 */
 		this.repository.delete(entity);
 	}
 

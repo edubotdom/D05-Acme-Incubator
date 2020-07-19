@@ -53,6 +53,10 @@
 
     alter table `forum` 
        drop 
+       foreign key `FK49evxvl11kdqxjybm2sn41x6f`;
+
+    alter table `forum` 
+       drop 
        foreign key `FKi060kpmt16oclfryca1rf6un8`;
 
     alter table `investor` 
@@ -66,6 +70,14 @@
     alter table `message` 
        drop 
        foreign key `FKik4epe9dp5q6uenarfyia7xin`;
+
+    alter table `participant` 
+       drop 
+       foreign key `FK17hovwcvdf6h03yygtp7wlrku`;
+
+    alter table `participant` 
+       drop 
+       foreign key `FK67h73ib586xy9hvw4vyy75fvv`;
 
     alter table `patron` 
        drop 
@@ -122,6 +134,8 @@
     drop table if exists `notice`;
 
     drop table if exists `overture`;
+
+    drop table if exists `participant`;
 
     drop table if exists `patron`;
 

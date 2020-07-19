@@ -7,10 +7,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.forums.Forum;
 import acme.entities.roles.Entrepreneur;
 import acme.entities.rounds.Round;
-import acme.features.authenticated.forum.AuthenticatedForumRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -20,10 +18,11 @@ import acme.framework.services.AbstractCreateService;
 public class EntrepreneurRoundCreateService implements AbstractCreateService<Entrepreneur, Round> {
 
 	@Autowired
-	EntrepreneurRoundRepository		repository;
-
-	@Autowired
-	AuthenticatedForumRepository	forumRepository;
+	EntrepreneurRoundRepository repository;
+	/*
+	 * @Autowired
+	 * AuthenticatedForumRepository forumRepository;
+	 */
 
 
 	@Override
@@ -102,10 +101,11 @@ public class EntrepreneurRoundCreateService implements AbstractCreateService<Ent
 		assert entity != null;
 
 		Round round = this.repository.save(entity);
-
-		Forum forum = new Forum();
-		forum.setRound(round);
-		this.forumRepository.save(forum);
+		/*
+		 * Forum forum = new Forum();
+		 * forum.setRound(round);
+		 * this.forumRepository.save(forum);
+		 */
 	}
 
 }

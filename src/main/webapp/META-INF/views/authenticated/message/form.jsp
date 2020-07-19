@@ -25,6 +25,9 @@
 	<acme:form-textbox code="authenticated.message.form.label.tags" path="tags" />
 	<acme:form-textarea code="authenticated.message.form.label.body" path="body" />
 
+	<jstl:if test="${command == 'create' }">
+		<acme:form-checkbox code="authenticated.message.form.label.accept" path="accept" />
+	</jstl:if>
 
 	<acme:form-hidden path="direccionForum" />
 	<acme:form-submit test="${command=='create'}" code="authenticated.message.form.button.create" action="${direccionForum}" />

@@ -17,8 +17,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:list>
-	<acme:list-column code="authenticated.forum.list.label.titleName" path="titleName" width="80%" />
-	<acme:list-column code="authenticated.forum.list.label.creatorName" path="creatorName" width="10%" />
+	<acme:list-column code="authenticated.participant.list.label.username" path="username" />
 </acme:list>
 
 

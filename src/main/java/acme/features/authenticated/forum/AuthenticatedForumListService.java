@@ -35,15 +35,12 @@ public class AuthenticatedForumListService implements AbstractListService<Authen
 		assert entity != null;
 		assert model != null;
 
-		String tickerRound = entity.getRound().getTicker();
-		String nameRound = entity.getRound().getTitle();
-		model.setAttribute("tickerRound", tickerRound);
-		model.setAttribute("nameRound", nameRound);
+		String creator = entity.getCreator().getUserAccount().getUsername();
+		String title = entity.getRound().getTitle();
+		model.setAttribute("creatorName", creator);
+		model.setAttribute("titleName", title);
 
-		String createMessage = "../message/create?id=" + entity.getId();
-		model.setAttribute("createMessage", createMessage);
-
-		request.unbind(entity, model);
+		request.unbind(entity, model, "creator", "round");
 	}
 
 	@Override
@@ -53,7 +50,8 @@ public class AuthenticatedForumListService implements AbstractListService<Authen
 		Collection<Forum> result;
 
 		Principal principal = request.getPrincipal();
-		result = this.repository.findManyForumsByUserId(principal.getAccountId());
+
+		result = this.repository.findManyForumsInParticipantByUserId(principal.getActiveRoleId());
 
 		return result;
 	}

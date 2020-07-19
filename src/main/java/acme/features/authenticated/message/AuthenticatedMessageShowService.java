@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.messages.Message;
-import acme.features.authenticated.forum.AuthenticatedForumRepository;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -18,26 +17,32 @@ public class AuthenticatedMessageShowService implements AbstractShowService<Auth
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedMessageRepository	repository;
-
-	@Autowired
-	private AuthenticatedForumRepository	forumRepository;
+	private AuthenticatedMessageRepository repository;
 
 
 	@Override
 	public boolean authorise(final Request<Message> request) {
 		assert request != null;
 
-		Integer messageId = request.getModel().getInteger("id");
+		Boolean result;
+		int threadId;
+		int messageId;
+		int countUser;
 
-		if (messageId != null) {
-			Message m = this.repository.findOneMessageById(messageId);
-			Principal principal = request.getPrincipal();
-			boolean res = this.forumRepository.findManyForumsByUserId(principal.getAccountId()).stream().anyMatch(f -> f.getId() == m.getForum().getId());
-			return res;
-		}
+		Principal principal;
+		int principalId;
 
-		return true;
+		messageId = request.getModel().getInteger("id");
+		Message m = this.repository.findOneMessageById(messageId);
+		threadId = m.getForum().getId();
+
+		principal = request.getPrincipal();
+		principalId = principal.getAccountId();
+		countUser = this.repository.countAuthenticatedByForumId(principalId, threadId);
+
+		result = countUser != 0;			// si suma 1 significa que dicho thread pertenece a dicho Authenticated
+
+		return result;
 	}
 
 	@Override

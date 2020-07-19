@@ -982,15 +982,18 @@
 
 	<!-- Forum' beans -->
 	<bean id="forum01" class="acme.entities.forums.Forum">
-		<property name="round" ref="round01"/>
+	<property name="round" ref="round01"/>
+	<property name="creator" ref="entrepreneur1Authenticated"/>
 	</bean>
 
 	<bean id="forum02" class="acme.entities.forums.Forum">
-		<property name="round" ref="round02"/>
+	<property name="round" ref="round02"/>
+	<property name="creator" ref="entrepreneur2Authenticated"/>
 	</bean>
 
 	<bean id="forum03" class="acme.entities.forums.Forum">
-		<property name="round" ref="round03"/>
+	<property name="round" ref="round03"/>
+	<property name="creator" ref="entrepreneur2Authenticated"/>
 	</bean>
 
 	<!-- Messages' beans -->
@@ -1030,4 +1033,27 @@
 		<property name="forum" ref="forum03"/>	
 	</bean>
 	
+	<!-- Participant -->
+
+	<bean name="participant1" class="acme.entities.participants.Participant">
+		<property name="user" ref="investor1Authenticated" />
+		<property name="forum" ref="forum01" />
+	</bean>
+
+	<bean name="participant2" class="acme.entities.participants.Participant">
+		<property name="user" ref="entrepreneur2Authenticated" />
+		<property name="forum" ref="forum02" />
+	</bean>
+
+
+	<bean name="participant4" class="acme.entities.participants.Participant">
+		<property name="user" ref="entrepreneur2Authenticated" />
+		<property name="forum" ref="forum03" />
+	</bean>
+
+	<bean name="participant5" class="acme.entities.participants.Participant">
+		<property name="user" ref="entrepreneur1Authenticated" />
+		<property name="forum" ref="forum01" />
+	</bean>
+
 </beans>

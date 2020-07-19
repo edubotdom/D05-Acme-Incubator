@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.messages.Message;
-import acme.features.authenticated.forum.AuthenticatedForumRepository;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Authenticated;
@@ -20,25 +19,28 @@ public class AuthenticatedMessageListService implements AbstractListService<Auth
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	AuthenticatedMessageRepository	repository;
-
-	@Autowired
-	AuthenticatedForumRepository	forumRepository;
+	AuthenticatedMessageRepository repository;
 
 
 	@Override
 	public boolean authorise(final Request<Message> request) {
 		assert request != null;
+		Boolean result;
+		int countUser;
+		int threadId;
 
-		Integer forumId = request.getModel().getInteger("id");
+		Principal principal;
+		int principalId;
 
-		if (forumId != null) {
-			Principal principal = request.getPrincipal();
-			boolean res = this.forumRepository.findManyForumsByUserId(principal.getAccountId()).stream().anyMatch(f -> f.getId() == forumId.intValue());
-			return res;
-		}
+		threadId = request.getModel().getInteger("id");
 
-		return true;
+		principal = request.getPrincipal();
+		principalId = principal.getAccountId();
+		countUser = this.repository.countAuthenticatedByForumId(principalId, threadId);
+
+		result = countUser != 0;			// si suma 1 significa que dicho thread pertenece a dicho Authenticated
+
+		return result;
 	}
 
 	@Override
