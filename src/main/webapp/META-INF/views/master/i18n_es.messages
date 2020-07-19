@@ -60,6 +60,7 @@ master.menu.administrator.listTool = Listar herramientas
 master.menu.administrator.createTool = Registrar herramienta
 master.menu.administrator.listChallenge = Listar desafíos
 master.menu.administrator.createChallenge = Crear un nuevo desafío
+master.menu.administrator.listAuthorizations = Listar solicitudes de contable
 
 # master.menu.patron ########################################################
 
@@ -129,6 +130,9 @@ master.menu.user-account.become-investor = Hazte inversor
 master.menu.user-account.investor = Datos de inversor
 master.menu.user-account.become-patron = Hazte patrocinador
 master.menu.user-account.patron = Datos de patrocinador
+master.menu.user-account.request-become-bookkeeper = Solicita ser contable
+master.menu.user-account.become-bookkeeper = Hazte contable
+master.menu.user-account.bookkeeper = Datos de contable
 
 ﻿# master.footer ###############################################################
 

@@ -59,6 +59,15 @@
         primary key (`id`)
     ) engine=InnoDB;
 
+    create table `authorization` (
+       `id` integer not null,
+        `version` integer not null,
+        `user_account_id` integer,
+        `accepted` bit not null,
+        `body` varchar(255),
+        primary key (`id`)
+    ) engine=InnoDB;
+
     create table `banner` (
        `id` integer not null,
         `version` integer not null,
@@ -365,6 +374,11 @@ create index IDXdr92l3mhgfgkeoplifnv5x2fp on `tool` (`sector`);
 
     alter table `authenticated` 
        add constraint FK_h52w0f3wjoi68b63wv9vwon57 
+       foreign key (`user_account_id`) 
+       references `user_account` (`id`);
+
+    alter table `authorization` 
+       add constraint FK_8ituf8e0qe45ej5n0tjyxxrqa 
        foreign key (`user_account_id`) 
        references `user_account` (`id`);
 

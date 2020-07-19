@@ -31,6 +31,10 @@
        drop 
        foreign key FK_h52w0f3wjoi68b63wv9vwon57;
 
+    alter table `authorization` 
+       drop 
+       foreign key FK_8ituf8e0qe45ej5n0tjyxxrqa;
+
     alter table `banner` 
        drop 
        foreign key `FKmlx88rwhns1ceiyilf11mre2l`;
@@ -106,6 +110,8 @@
     drop table if exists `application`;
 
     drop table if exists `authenticated`;
+
+    drop table if exists `authorization`;
 
     drop table if exists `banner`;
 
