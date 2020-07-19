@@ -1,33 +1,38 @@
 
 package acme.features.bookkeeper.accounting;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.accountings.Accounting;
 import acme.entities.roles.Bookkeeper;
-import acme.entities.rounds.Round;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.services.AbstractUpdateService;
 
 @Service
-public class BookkeeperAccountingCreateService implements AbstractCreateService<Bookkeeper, Accounting> {
+public class BookkeeperAccountingUpdateService implements AbstractUpdateService<Bookkeeper, Accounting> {
+
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	BookkeeperAccountingRepository repository;
+	private BookkeeperAccountingRepository repository;
 
 
 	@Override
 	public boolean authorise(final Request<Accounting> request) {
 		assert request != null;
 
-		Round round = this.repository.findOneRoundById(request.getModel().getInteger("id"));
+		Integer idAccounting = request.getModel().getInteger("id");
+		if (idAccounting != null) {
+			Accounting accounting = this.repository.findOneAccountingById(idAccounting);
+			boolean propietario = accounting.getBookkeeper().getUserAccount().getId() == request.getPrincipal().getAccountId();
+			boolean published = accounting.isStatus();
 
-		return round.isStatus();
+			return propietario && !published;
+		}
+		return true;
 	}
 
 	@Override
@@ -52,20 +57,15 @@ public class BookkeeperAccountingCreateService implements AbstractCreateService<
 	}
 
 	@Override
-	public Accounting instantiate(final Request<Accounting> request) {
+	public Accounting findOne(final Request<Accounting> request) {
 		assert request != null;
 
 		Accounting result;
+		int id;
 
-		int bookkeeperId = request.getPrincipal().getAccountId();
-		Bookkeeper bookkeeper = this.repository.findOneBookkeeperByUserAccountId(bookkeeperId);
-		Round round = this.repository.findOneRoundById(request.getModel().getInteger("id"));
-		Date date = new Date(System.currentTimeMillis() - 1);
+		id = request.getModel().getInteger("id");
+		result = this.repository.findOneAccountingById(id);
 
-		result = new Accounting();
-		result.setCreation(date);
-		result.setBookkeeper(bookkeeper);
-		result.setRound(round);
 		return result;
 	}
 
@@ -78,11 +78,10 @@ public class BookkeeperAccountingCreateService implements AbstractCreateService<
 	}
 
 	@Override
-	public void create(final Request<Accounting> request, final Accounting entity) {
-		assert request != null;
-		assert entity != null;
+	public void update(final Request<Accounting> request, final Accounting entity) {
 
 		this.repository.save(entity);
+
 	}
 
 }

@@ -18,6 +18,7 @@ bookkeeper.accounting.form.label.bookkeeper = Nombre del contable:
 bookkeeper.accounting.form.label.round = Identificación de la ronda de inversión:
 bookkeeper.accounting.form.button.createAccounting = Crear
 bookkeeper.accounting.form.button.return = Volver
+bookkeeper.accounting.form.button.update = Actualizar
 
 bookkeeper.accounting.list.label.title = Título
 bookkeeper.accounting.list.label.creation = Fecha de creación

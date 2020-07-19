@@ -45,6 +45,7 @@ s not guaranteed for any particular
 	<acme:form-hidden path="createAccounting"/>
 	
 	<acme:form-submit test="${command == 'create'}" code="bookkeeper.accounting.form.button.createAccounting" action="${createAccounting}" />
+	<acme:form-submit test="${command != 'create' && status=='false'}" code="bookkeeper.accounting.form.button.update" action="/bookkeeper/accounting/update"/>
 		
 	<acme:form-return code="bookkeeper.accounting.form.button.return" />
 </acme:form>
