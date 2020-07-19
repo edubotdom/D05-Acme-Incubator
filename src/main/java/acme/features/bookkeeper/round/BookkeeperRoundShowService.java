@@ -22,14 +22,10 @@ public class BookkeeperRoundShowService implements AbstractShowService<Bookkeepe
 	@Override
 	public boolean authorise(final Request<Round> request) {
 		assert request != null;
-		/*
-		 * int roundId;
-		 *
-		 * roundId = request.getModel().getInteger("id");
-		 * Collection<Accounting> accountings = this.repository.findManyAccountsByRound(roundId);
-		 *
-		 * return accountings.stream().map(a -> a.getBookkeeper().getId()).anyMatch(i -> i.equals(request.getPrincipal().getActiveRoleId()));
-		 */ return true;
+
+		Round round = this.repository.findOneRoundById(request.getModel().getInteger("id"));
+
+		return round.isStatus();
 	}
 
 	@Override

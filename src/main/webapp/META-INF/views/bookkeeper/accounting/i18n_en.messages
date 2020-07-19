@@ -18,6 +18,7 @@ bookkeeper.accounting.form.label.bookkeeper = Bookkeeper name:
 bookkeeper.accounting.form.label.round = Round ticker:
 bookkeeper.accounting.form.button.createAccounting = Create
 bookkeeper.accounting.form.button.return = Return
+bookkeeper.accounting.form.button.update = Update
 
 bookkeeper.accounting.list.label.title = Title
 bookkeeper.accounting.list.label.creation = Creation date
