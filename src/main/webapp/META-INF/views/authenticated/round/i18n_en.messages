@@ -22,6 +22,7 @@ authenticated.round.form.label.kind = Kind of the investment:
 
 authenticated.round.form.button.accountingList = Accounting list
 authenticated.round.form.button.activitiesList = List Activities
+authenticated.round.form.button.createForum = Create forum
 
 authenticated.round.form.button.create = Create
 

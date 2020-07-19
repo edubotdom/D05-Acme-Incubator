@@ -8,8 +8,8 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-authenticated.forum.form.label.messages.author = Author:
-authenticated.forum.form.label.title = Title:
+authenticated.forum.form.label.creatorName = Creator:
+authenticated.forum.form.label.titleName = Title:
 authenticated.forum.form.label.creationDate = Creation date:
 authenticated.forum.form.label.messages = Messages
 authenticated.forum.form.label.messages.title = Message title:
@@ -18,14 +18,13 @@ authenticated.forum.form.label.messages.body = Message body:
 authenticated.forum.form.label.messages.moment = Message's moment of publication:
 
 authenticated.forum.form.button.return = Return
+authenticated.forum.form.button.create = Create forum
 authenticated.forum.form.button.messageList = List messages
 authenticated.forum.form.button.message.create = Create message
 authenticated.forum.form.button.message.listarUsuario = List forum users
 authenticated.forum.form.button.message.anadirUsuario = Add user to this forum
 
-authenticated.forum.list.label.titleRound = Title of the round name and forum
-authenticated.forum.list.label.tickerRound = Identifier of round 
-authenticated.forum.list.button.return=Return
-authenticated.forum.list.button.createMessage=Create new message
+authenticated.forum.list.label.creatorName = Creator:
+authenticated.forum.list.label.titleName = Title:
 
 authenticated.forum.spamWords = Do not write spam words

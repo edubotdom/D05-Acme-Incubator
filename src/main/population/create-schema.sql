@@ -150,6 +150,7 @@
     create table `forum` (
        `id` integer not null,
         `version` integer not null,
+        `creator_id` integer not null,
         `round_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
@@ -211,6 +212,14 @@
         `money_amount` double precision,
         `money_currency` varchar(255),
         `title` varchar(255),
+        primary key (`id`)
+    ) engine=InnoDB;
+
+    create table `participant` (
+       `id` integer not null,
+        `version` integer not null,
+        `forum_id` integer not null,
+        `user_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
 
@@ -303,9 +312,6 @@ create index IDXj1shjic6mip5nyik4ywhvxiid on `application` (`ticker`);
        add constraint UK_ao7wxw7e7mkj6g5q49yq2fw8d unique (`ticker`);
 create index IDXorxhsdg7d67bolj0n57rc4o63 on `botia_bulletin` (`expiring_date`);
 create index IDXnr284tes3x8hnd3h716tmb3fr on `challenge` (`deadline`);
-
-    alter table `forum` 
-       add constraint UK_q57nllj3lbejasd0yhaujdocg unique (`round_id`);
 create index IDX9u3lu85o98y0tro95qasghg8e on `inquiry` (`deadline`);
 create index IDXrcpel5hblr62lfjr9gmpk2wgi on `notice` (`deadline`);
 create index IDX3ianip0mmnj1316lpeas2yw71 on `overture` (`deadline`);
@@ -388,6 +394,11 @@ create index IDXdr92l3mhgfgkeoplifnv5x2fp on `tool` (`sector`);
        references `user_account` (`id`);
 
     alter table `forum` 
+       add constraint `FK49evxvl11kdqxjybm2sn41x6f` 
+       foreign key (`creator_id`) 
+       references `authenticated` (`id`);
+
+    alter table `forum` 
        add constraint `FKi060kpmt16oclfryca1rf6un8` 
        foreign key (`round_id`) 
        references `round` (`id`);
@@ -404,6 +415,16 @@ create index IDXdr92l3mhgfgkeoplifnv5x2fp on `tool` (`sector`);
 
     alter table `message` 
        add constraint `FKik4epe9dp5q6uenarfyia7xin` 
+       foreign key (`user_id`) 
+       references `authenticated` (`id`);
+
+    alter table `participant` 
+       add constraint `FK17hovwcvdf6h03yygtp7wlrku` 
+       foreign key (`forum_id`) 
+       references `forum` (`id`);
+
+    alter table `participant` 
+       add constraint `FK67h73ib586xy9hvw4vyy75fvv` 
        foreign key (`user_id`) 
        references `authenticated` (`id`);
 

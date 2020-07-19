@@ -15,15 +15,24 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<acme:form>
-
-	<acme:form-textbox code="authenticated.forum.list.label.titleRound" path="nameRound" readonly="true" />
-	<acme:form-textbox code="authenticated.forum.list.label.tickerRound" path="tickerRound" readonly="true" />
-
+<acme:form>	
+	
+ 	<acme:form-textbox code="authenticated.forum.form.label.titleName" path="titleName" readonly = "true"/>
+	<acme:form-textbox code="authenticated.forum.form.label.creatorName" path="creatorName" readonly = "true"/>
+	
 	<jstl:if test="${command != 'create' }">
 	<acme:form-return code="authenticated.forum.form.button.messageList" action= "${direccion}"/>
 	<acme:form-return code="authenticated.forum.form.button.message.create" action="${forumCreateMessage}" />
+	<jstl:if test="${forumProppetary}">
+	<acme:form-return code="authenticated.forum.form.button.message.listarUsuario" action="${direccionListarUsuario}" />
+	<acme:form-return code="authenticated.forum.form.button.message.anadirUsuario" action="${direccionAnadirUsuario}" />
+	</jstl:if>
 	</jstl:if>
 	
+	<acme:form-hidden path="round"/>
+	<acme:form-hidden path="forumProppetary"/>
+	
+	<acme:form-submit test="${command=='create'}" code="authenticated.forum.form.button.create" action="/authenticated/forum/create" />
+
 	<acme:form-return code="authenticated.forum.form.button.return" />
 </acme:form>

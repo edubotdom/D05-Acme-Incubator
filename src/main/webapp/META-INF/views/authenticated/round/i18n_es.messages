@@ -22,6 +22,7 @@ authenticated.round.form.label.kind = Tipo de inversión
 
 authenticated.round.form.button.accountingList = Lista de contabilidades
 authenticated.round.form.button.activitiesList = Listar actividades
+authenticated.round.form.button.createForum = Crear hilo
 
 authenticated.round.form.button.create = Crear
 

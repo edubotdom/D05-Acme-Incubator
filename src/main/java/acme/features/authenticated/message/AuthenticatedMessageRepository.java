@@ -13,10 +13,12 @@
 package acme.features.authenticated.message;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.entities.customization.Customization;
 import acme.entities.forums.Forum;
 import acme.entities.messages.Message;
 import acme.framework.entities.Authenticated;
@@ -36,5 +38,14 @@ public interface AuthenticatedMessageRepository extends AbstractRepository {
 
 	@Query("select t from Forum t where t.id = ?1")
 	Forum findForumById(int id);
+
+	@Query("select c from Customization c")
+	Customization findCustomization();
+
+	@Query("select p.user from Participant p where p.forum.id = ?1")
+	List<Authenticated> findManyAuthenticatedByForumId(int id);
+
+	@Query("select count(p) from Participant p where p.user.userAccount.id = ?1 and p.forum.id = ?2")
+	int countAuthenticatedByForumId(int idUser, int idForum);
 
 }

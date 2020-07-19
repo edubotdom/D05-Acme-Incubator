@@ -24,14 +24,22 @@ public class AuthenticatedForumShowService implements AbstractShowService<Authen
 	public boolean authorise(final Request<Forum> request) {
 		assert request != null;
 
-		Integer id = request.getModel().getInteger("id");
+		Boolean result;
+		int countUser;
+		int forumId;
 
-		if (id != null) {
-			Principal principal = request.getPrincipal();
-			boolean res = this.repository.findManyForumsByUserId(principal.getAccountId()).stream().anyMatch(f -> f.getId() == id.intValue());
-			return res;
-		}
-		return true;
+		Principal principal;
+		int principalId;
+
+		forumId = request.getModel().getInteger("id");
+
+		principal = request.getPrincipal();
+		principalId = principal.getAccountId();
+		countUser = this.repository.countAuthenticatedByForumId(principalId, forumId);
+
+		result = countUser != 0;			// si suma 1 significa que dicho forum pertenece a dicho Authenticated
+
+		return result;
 	}
 
 	@Override
@@ -40,18 +48,27 @@ public class AuthenticatedForumShowService implements AbstractShowService<Authen
 		assert entity != null;
 		assert model != null;
 
-		String tickerRound = entity.getRound().getTicker();
-		String nameRound = entity.getRound().getTitle();
-		model.setAttribute("tickerRound", tickerRound);
-		model.setAttribute("nameRound", nameRound);
-
 		String direccion = "../message/list_by_forum?id=" + entity.getId();
 		model.setAttribute("direccion", direccion);
-		request.unbind(entity, model);
 
 		String direccion2 = "../message/create?id=" + entity.getId();
 		model.setAttribute("forumCreateMessage", direccion2);
 
+		model.setAttribute("forumProppetary", entity.getCreator().getUserAccount().getId() == request.getPrincipal().getAccountId());
+
+		int idForum = entity.getId();
+		String direccionAnadirUsuario = "../participant/create?forumid=" + idForum;
+		model.setAttribute("direccionAnadirUsuario", direccionAnadirUsuario);
+
+		String direccionListarUsuario = "../participant/list?forumid=" + idForum;
+		model.setAttribute("direccionListarUsuario", direccionListarUsuario);
+
+		String creator = entity.getCreator().getUserAccount().getUsername();
+		String title = entity.getRound().getTitle();
+		model.setAttribute("creatorName", creator);
+		model.setAttribute("titleName", title);
+
+		request.unbind(entity, model);
 	}
 
 	@Override
