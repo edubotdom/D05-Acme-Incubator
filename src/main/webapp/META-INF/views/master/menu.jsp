@@ -59,7 +59,9 @@
 			<!-- Challenge links -->
 			<acme:menu-suboption code="master.menu.administrator.listChallenge" action="/administrator/challenge/list"/>
 			<acme:menu-suboption code="master.menu.administrator.createChallenge" action="/administrator/challenge/create"/>
-
+			<!-- Bookkeeper links -->
+			<acme:menu-suboption code="master.menu.administrator.listAuthorizations" action="/administrator/authorization/list"/>
+			
 
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shutdown" action="/master/shutdown"/>
@@ -150,6 +152,13 @@
 			<acme:menu-suboption code="master.menu.user-account.investor" action="/authenticated/investor/update" access="hasRole('Investor')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-patron" action="/authenticated/patron/create" access="!hasRole('Patron')"/>
 			<acme:menu-suboption code="master.menu.user-account.patron" action="/authenticated/patron/update" access="hasRole('Patron')"/>
+			<acme:menu-suboption code="master.menu.user-account.request-become-bookkeeper" action="/authenticated/authorization/create"
+				access="!hasRole('Authorization')" />
+			<acme:menu-suboption code="master.menu.user-account.become-bookkeeper" action="/authenticated/authorization/show"
+			access="!hasRole('Bookkeeper') && hasRole('Authorization')" />
+			<acme:menu-suboption code="master.menu.user-account.bookkeeper" action="/authenticated/bookkeeper/update" access="hasRole('Bookkeeper')" />
+			
+
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.sign-out" action="/master/sign-out" access="isAuthenticated()"/>
