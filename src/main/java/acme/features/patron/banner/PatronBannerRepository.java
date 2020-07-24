@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.entities.banners.Banner;
 import acme.entities.cards.Card;
+import acme.entities.customization.Customization;
 import acme.entities.roles.Patron;
 import acme.framework.repositories.AbstractRepository;
 
@@ -39,4 +40,7 @@ public interface PatronBannerRepository extends AbstractRepository {
 
 	@Query("select n from Card n where exists(select b from Banner b where b.card.id= n.id and b.id = ?1)")
 	Card findCardByBannerId(int id);
+
+	@Query("select c from Customization c")
+	Customization findCustomization();
 }

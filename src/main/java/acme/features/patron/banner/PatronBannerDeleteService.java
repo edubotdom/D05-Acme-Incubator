@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.banners.Banner;
+import acme.entities.cards.Card;
 import acme.entities.roles.Patron;
 import acme.features.patron.card.PatronCardRepository;
 import acme.framework.components.Errors;
@@ -73,14 +74,11 @@ public class PatronBannerDeleteService implements AbstractDeleteService<Patron, 
 		assert request != null;
 		assert entity != null;
 
-		//List<Banner> banners = new ArrayList<>(this.cardRepository.findBannersByCard(entity.getCard().getId()));
+		Card card = entity.getCard();
 		this.repository.delete(entity);
-		/*
-		 * if (banners.size() < 2) {
-		 * Card card = banners.get(0).getCard();
-		 * this.cardRepository.delete(card);
-		 * }
-		 */
+		if (card != null) {
+			this.cardRepository.delete(card);
+		}
 	}
 
 }

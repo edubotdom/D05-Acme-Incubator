@@ -1071,3 +1071,29 @@ ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: acme.fr
 ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] HTTP GET /acme-incubator/META-INF/views/framework/page.jsp HTTP/1.1
 ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
 ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: acme.framework.helpers.Assert.state(Assert.java:40): Access is not authorised
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] HTTP GET /acme-incubator/META-INF/views/framework/page.jsp HTTP/1.1
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: acme.framework.helpers.Assert.state(Assert.java:40): End-point not available
+WARN [com.zaxxer.hikari.pool.PoolBase] {} - Failed to validate connection {} ({}). Possibly consider using a shorter maxLifetime value.
+WARN [com.zaxxer.hikari.pool.PoolBase] {} - Failed to validate connection {} ({}). Possibly consider using a shorter maxLifetime value.
+WARN [com.zaxxer.hikari.pool.PoolBase] {} - Failed to validate connection {} ({}). Possibly consider using a shorter maxLifetime value.
+WARN [com.zaxxer.hikari.pool.PoolBase] {} - Failed to validate connection {} ({}). Possibly consider using a shorter maxLifetime value.
+WARN [com.zaxxer.hikari.pool.PoolBase] {} - Failed to validate connection {} ({}). Possibly consider using a shorter maxLifetime value.
+WARN [com.zaxxer.hikari.pool.PoolBase] {} - Failed to validate connection {} ({}). Possibly consider using a shorter maxLifetime value.
+WARN [com.zaxxer.hikari.pool.PoolBase] {} - Failed to validate connection {} ({}). Possibly consider using a shorter maxLifetime value.
+WARN [com.zaxxer.hikari.pool.PoolBase] {} - Failed to validate connection {} ({}). Possibly consider using a shorter maxLifetime value.
+WARN [com.zaxxer.hikari.pool.PoolBase] {} - Failed to validate connection {} ({}). Possibly consider using a shorter maxLifetime value.
+WARN [com.zaxxer.hikari.pool.PoolBase] {} - Failed to validate connection {} ({}). Possibly consider using a shorter maxLifetime value.
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] HTTP GET /acme-incubator/META-INF/views/framework/page.jsp HTTP/1.1
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: acme.framework.helpers.Assert.state(Assert.java:40): Access is not authorised
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] HTTP GET /acme-incubator/META-INF/views/framework/page.jsp HTTP/1.1
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: org.springframework.core.convert.support.ConversionUtils.invokeConverter(ConversionUtils.java:47): Failed to convert from type [java.lang.String] to type [java.lang.Integer] for value '82ç'; nested exception is java.lang.NumberFormatException: For input string: "82ç"
+java.lang.NumberFormatException.forInputString(Unknown Source): For input string: "82ç"
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] HTTP GET /acme-incubator/META-INF/views/framework/page.jsp HTTP/1.1
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: acme.framework.helpers.Assert.state(Assert.java:40): Access is not authorised
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] HTTP GET /acme-incubator/META-INF/views/framework/page.jsp HTTP/1.1
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Status: 500
+ERROR [org.apache.jsp.META_002dINF.views.framework.panic_jsp] Exception: acme.framework.helpers.Assert.state(Assert.java:40): Access is not authorised
