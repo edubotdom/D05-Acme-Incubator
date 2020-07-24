@@ -69,6 +69,8 @@ public class AuthenticatedForumCreateService implements AbstractCreateService<Au
 		assert entity != null;
 		assert model != null;
 
+		model.setAttribute("createSubmit", "/authenticated/forum/create?roundId=" + request.getModel().getInteger("roundId"));
+
 		request.unbind(entity, model, "creator", "round");
 	}
 
@@ -80,7 +82,7 @@ public class AuthenticatedForumCreateService implements AbstractCreateService<Au
 		result = new Forum();
 		result.setCreator(this.repository.findOneAuthenticatedByUserAccountId(request.getPrincipal().getAccountId()));
 
-		Integer roundId = request.getModel().getInteger("round");
+		Integer roundId = request.getModel().getInteger("roundId");
 		Round round = this.repository.findOneRoundById(roundId);
 		result.setRound(round);
 		return result;

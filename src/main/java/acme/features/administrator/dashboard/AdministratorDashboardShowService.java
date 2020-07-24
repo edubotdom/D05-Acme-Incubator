@@ -1,8 +1,11 @@
 
 package acme.features.administrator.dashboard;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +43,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		request.unbind(entity, model, "totalNumberOfNotices", "totalNumberOfTechnologyRecords", "totalNumberOfToolRecords", "minimumMoneyInquiries", "maximumMoneyInquiries", "averageMoneyInquiries", "standardDesviationMoneyInquiries",
 			"minimumMoneyOvertures", "maximumMoneyOvertures", "averageMoneyOvertures", "standardDesviationMoneyOvertures", "technologySectors", "numberTechnologiesBySector", "toolSectors", "numberToolsBySector", "openSourceRatioTechnologies",
 			"closedSourceRatioTechnologies", "openSourceRatioTools", "closedSourceRatioTools", "averageRoundsPerEntrepreneur", "averageApplicationsPerEntrepreneur", "averageApplicationsPerInvestor", "ratioSeedInvestmentRounds",
-			"ratioAngelInvestmentRounds", "ratioSeriesAInvestmentRounds", "ratioSeriesBInvestmentRounds", "ratioSeriesCInvestmentRounds", "ratioBridgeInvestmentRounds", "ratioAcceptedApplications", "ratioRejectedApplications", "ratioPendingApplications");
+			"ratioAngelInvestmentRounds", "ratioSeriesAInvestmentRounds", "ratioSeriesBInvestmentRounds", "ratioSeriesCInvestmentRounds", "ratioBridgeInvestmentRounds", "ratioAcceptedApplications", "ratioRejectedApplications", "ratioPendingApplications",
+			"numberListOfPendingApplications", "dateListOfPendingApplications", "numberListOfAcceptedApplications", "dateListOfAcceptedApplications", "numberListOfRejectedApplications", "dateListOfRejectedApplications");
 	}
 
 	@Override
@@ -49,7 +53,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 
 		Dashboard result = new Dashboard();
 
-		//Numbers
+		//Total number of notices, technology records and tool records
 		result.setTotalNumberOfNotices(this.repository.countNumberOfNotices());
 		result.setTotalNumberOfTechnologyRecords(this.repository.countTechnologyRecords());
 		result.setTotalNumberOfToolRecords(this.repository.countToolRecords());
@@ -114,6 +118,25 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setRatioAcceptedApplications(this.repository.ratioAcceptedApplications());
 		result.setRatioRejectedApplications(this.repository.ratioRejectedApplications());
 		result.setRatioPendingApplications(this.repository.ratioPendingApplications());
+
+		//Time series
+		ZoneId systemDefaultZoneId = ZoneId.systemDefault();
+
+		LocalDate date = LocalDate.now().minusDays(15);
+		Date moment;
+		moment = Date.from(date.atStartOfDay(systemDefaultZoneId).toInstant());
+
+		// Pending applications
+		result.setNumberListOfPendingApplications(this.repository.getNumberListOfPendingApplications(moment));
+		result.setDateListOfPendingApplications(this.repository.getDateListOfPendingApplications(moment));
+
+		// Accepted applications
+		result.setNumberListOfAcceptedApplications(this.repository.getNumberListOfAcceptedApplications(moment));
+		result.setDateListOfAcceptedApplications(this.repository.getDateListOfAcceptedApplications(moment));
+
+		// Rejected applications
+		result.setNumberListOfRejectedApplications(this.repository.getNumberListOfRejectedApplications(moment));
+		result.setDateListOfRejectedApplications(this.repository.getDateListOfRejectedApplications(moment));
 
 		return result;
 	}
