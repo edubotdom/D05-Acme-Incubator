@@ -17,10 +17,11 @@
 
 <acme:form>	
 	
+	<jstl:if test="${command != 'create' }">
  	<acme:form-textbox code="authenticated.forum.form.label.titleName" path="titleName" readonly = "true"/>
 	<acme:form-textbox code="authenticated.forum.form.label.creatorName" path="creatorName" readonly = "true"/>
 	
-	<jstl:if test="${command != 'create' }">
+	
 	<acme:form-return code="authenticated.forum.form.button.messageList" action= "${direccion}"/>
 	<acme:form-return code="authenticated.forum.form.button.message.create" action="${forumCreateMessage}" />
 	<jstl:if test="${forumProppetary}">
@@ -29,10 +30,10 @@
 	</jstl:if>
 	</jstl:if>
 	
-	<acme:form-hidden path="round"/>
+	<acme:form-hidden path="roundId"/>
 	<acme:form-hidden path="forumProppetary"/>
 	
-	<acme:form-submit test="${command=='create'}" code="authenticated.forum.form.button.create" action="/authenticated/forum/create" />
+	<acme:form-submit test="${command=='create'}" code="authenticated.forum.form.button.create" action="${createSubmit}" />
 
 	<acme:form-return code="authenticated.forum.form.button.return" />
 </acme:form>

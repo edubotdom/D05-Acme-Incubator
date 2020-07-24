@@ -61,6 +61,17 @@ public class Dashboard implements Serializable {
 	Double						ratioRejectedApplications;
 	Double						ratioPendingApplications;
 
+	// Round applications' time series --------------------------------------------------
+
+	List<Integer>				numberListOfPendingApplications;
+	List<String>				dateListOfPendingApplications;
+
+	List<Integer>				numberListOfAcceptedApplications;
+	List<String>				dateListOfAcceptedApplications;
+
+	List<Integer>				numberListOfRejectedApplications;
+	List<String>				dateListOfRejectedApplications;
+
 	// Derived attributes ------------------------------------------------------
 
 	// Relationships -----------------------------------------------------------

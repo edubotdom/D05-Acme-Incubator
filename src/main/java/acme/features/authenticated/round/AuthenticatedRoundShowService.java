@@ -50,7 +50,7 @@ public class AuthenticatedRoundShowService implements AbstractShowService<Authen
 		String direccion2 = "../activity/list_by_round?id=" + entity.getId();
 		model.setAttribute("roundListActivities", direccion2);
 
-		String createForum = "../forum/create?round=" + entity.getId();
+		String createForum = "../forum/create?roundId=" + entity.getId();
 		model.setAttribute("createForum", createForum);
 
 		request.unbind(entity, model, "ticker", "creation", "kind", "title", "description", "money", "information", "entrepreneur");

@@ -13,6 +13,8 @@
 package acme.features.administrator.dashboard;
 
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -112,5 +114,23 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 
 	@Query("select 1.0 * count(a) / (select count(b) from Round b) from Round a where a.kind = 'BRIDGE'")
 	Double ratioBridgeInvestmentRounds();
+
+	@Query("select count(a) from Application a where a.status = 'pending' and date(a.creation) >= ?1 group by day(a.creation) order by date(a.creation) asc")
+	List<Integer> getNumberListOfPendingApplications(Date date);
+
+	@Query("select date(a.creation) from Application a where a.status = 'pending' and date(a.creation) >= ?1 group by day(a.creation) order by date(a.creation) asc")
+	List<String> getDateListOfPendingApplications(Date date);
+
+	@Query("select count(a) from Application a where a.status = 'accepted' and date(a.creation) >= ?1 group by day(a.creation) order by date(a.creation) asc")
+	List<Integer> getNumberListOfAcceptedApplications(Date date);
+
+	@Query("select date(a.creation) from Application a where a.status = 'accepted' and date(a.creation) >= ?1 group by day(a.creation) order by date(a.creation) asc")
+	List<String> getDateListOfAcceptedApplications(Date date);
+
+	@Query("select count(a) from Application a where a.status = 'rejected' and date(a.creation) >= ?1 group by day(a.creation) order by date(a.creation) asc")
+	List<Integer> getNumberListOfRejectedApplications(Date date);
+
+	@Query("select date(a.creation) from Application a where a.status = 'rejected' and date(a.creation) >= ?1 group by day(a.creation) order by date(a.creation) asc")
+	List<String> getDateListOfRejectedApplications(Date date);
 
 }

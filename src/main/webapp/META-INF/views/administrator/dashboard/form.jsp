@@ -436,3 +436,148 @@ function ordena(dataY,datosX){
 		var chart = construyeGrafica(ctx, "bar", data,ets,labels, "",[false,false]);
 
 	</script>
+	
+		<!-- Chart Application Time Series -->
+	<head>
+	    <title>Line Chart</title>
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+	    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"></script>
+	    <style>
+	        canvas {
+	            -moz-user-select: none;
+	            -webkit-user-select: none;
+	            -ms-user-select: none;
+	        }
+	    </style>
+	</head>
+	
+	<h2>
+		<acme:message code="administrator.dashboard.form.label.timeSeries"/>
+	</h2>	
+	
+
+	<div style="width:75%;">
+    <canvas id="timeSeries"></canvas>
+	</div>
+	
+	<script>
+
+		<!-- Pending -->
+		var dateListOfPendingApplications = new Array();
+		<jstl:forEach items="${dateListOfPendingApplications}" var="item">
+		dateListOfPendingApplications.push("${item}");
+		</jstl:forEach>
+		
+		var numberListOfPendingApplications = new Array();
+		<jstl:forEach items="${numberListOfPendingApplications}" var="item">
+		numberListOfPendingApplications.push("${item}");
+		</jstl:forEach>		
+		
+		class Ejes{
+	        constructor(xAxe,yAxe){
+	            this.x=xAxe;
+	            this.y=yAxe;
+	        }
+	    }
+		
+		var pendingData = new Array();
+		
+	    for (var i = 0; i < dateListOfPendingApplications.length; i++) {
+	        myAxe = new Ejes(dateListOfPendingApplications[i],numberListOfPendingApplications[i]);
+	        pendingData.push(myAxe)
+	    }
+	    
+	    <!-- Accepted -->
+	    var dateListOfAcceptedApplications = new Array();
+		<jstl:forEach items="${dateListOfAcceptedApplications}" var="item">
+		dateListOfAcceptedApplications.push("${item}");
+		</jstl:forEach>
+		
+		var numberListOfAcceptedApplications = new Array();
+		<jstl:forEach items="${numberListOfAcceptedApplications}" var="item">
+		numberListOfAcceptedApplications.push("${item}");
+		</jstl:forEach>		
+		
+		var acceptedData = new Array();
+		
+	    for (var i = 0; i < dateListOfAcceptedApplications.length; i++) {
+	        myAxe = new Ejes(dateListOfAcceptedApplications[i],numberListOfAcceptedApplications[i]);
+	        acceptedData.push(myAxe)
+	    }
+	    
+	    <!-- Rejected -->
+	    var dateListOfRejectedApplications = new Array();
+		<jstl:forEach items="${dateListOfRejectedApplications}" var="item">
+		dateListOfRejectedApplications.push("${item}");
+		</jstl:forEach>
+		
+		var numberListOfRejectedApplications = new Array();
+		<jstl:forEach items="${numberListOfRejectedApplications}" var="item">
+		numberListOfRejectedApplications.push("${item}");
+		</jstl:forEach>		
+		
+		var rejectedData = new Array();
+		
+	    for (var i = 0; i < dateListOfRejectedApplications.length; i++) {
+	        myAxe = new Ejes(dateListOfRejectedApplications[i],numberListOfRejectedApplications[i]);
+	        rejectedData.push(myAxe)
+	    }
+		
+	    
+	    <!-- CHART -->
+	    var timeFormat = 'YYYY-MM-DD';
+	
+	    var config = {
+	        type:    'line',
+	        data:    {
+	            datasets: [
+	                {
+	                    label: "Pending",
+	                    data: pendingData,
+	                    fill: false,
+	                    borderColor: 'blue'
+	                },
+	                {
+	                    label: "Accepted",
+	                    data: acceptedData,
+	                    fill:  false,
+	                    borderColor: 'green'
+	                },
+	                {
+	                    label: "Rejected",
+	                    data:  rejectedData,
+	                    fill:  false,
+	                    borderColor: 'red'
+	                }
+	            ]
+	        },
+	        options: {
+	            responsive: true,
+	            scales:     {
+	                xAxes: [{
+	
+						type: 'time',
+						time:{
+						    unit: 'day',
+	                        format: timeFormat
+						},
+						distribution: 'series'
+							
+	                }],
+	                yAxes: [{
+	                    ticks : {
+									suggestedMin : 0,
+									suggestedMax : 5
+								}
+	                }]
+	            }
+	        }
+	    };
+	
+	    window.onload = function () {
+	        var ctx       = document.getElementById("timeSeries").getContext("2d");
+	        window.myLine = new Chart(ctx, config);
+	    };
+
+	</script>

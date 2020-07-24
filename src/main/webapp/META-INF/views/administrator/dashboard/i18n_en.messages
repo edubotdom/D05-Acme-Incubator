@@ -40,4 +40,6 @@ administrator.dashboard.form.label.averageApplicationsPerInvestor = Average appl
 administrator.dashboard.form.label.roundsByKindRatiosChart = Investment rounds by kind
 administrator.dashboard.form.label.applicationsByStatusRatiosChart = Application to investment rounds by status
 
+administrator.dashboard.form.label.timeSeries = Application to investment round status' time series
+
 administrator.dashboard.form.button.return = Return

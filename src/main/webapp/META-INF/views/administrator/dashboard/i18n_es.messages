@@ -40,4 +40,6 @@ administrator.dashboard.form.label.averageApplicationsPerInvestor = Número de s
 administrator.dashboard.form.label.roundsByKindRatiosChart = Rondas de inversión por tipo
 administrator.dashboard.form.label.applicationsByStatusRatiosChart = Solicitudes a las rondas de inversión por estado
 
+administrator.dashboard.form.label.timeSeries = Gráfico temporal acerca del estado de aplicaciones a rondas de inversión
+
 administrator.dashboard.form.button.return = Volver
