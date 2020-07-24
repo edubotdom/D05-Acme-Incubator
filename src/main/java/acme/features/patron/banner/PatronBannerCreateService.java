@@ -1,10 +1,15 @@
 
 package acme.features.patron.banner;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.banners.Banner;
+import acme.entities.customization.Customization;
 import acme.entities.roles.Patron;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
@@ -63,6 +68,28 @@ public class PatronBannerCreateService implements AbstractCreateService<Patron, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		if (!entity.getSlogan().isEmpty()) {
+			//Spam
+			String[] sloganSplitted = entity.getSlogan().split(" ");
+
+			Customization customisation = this.repository.findCustomization();
+
+			String[] spamWords = customisation.getSpam().split(",");
+			Double spamThreshold = customisation.getThreshold();
+
+			List<String> spamWordsInList = IntStream.range(0, spamWords.length).boxed().map(x -> spamWords[x].trim()).collect(Collectors.toList());
+
+			Integer sloganNumSpam = (int) IntStream.range(0, sloganSplitted.length).boxed().map(x -> sloganSplitted[x].trim()).filter(i -> spamWordsInList.contains(i)).count();
+
+			boolean isSloganFreeOfSpam = true;
+
+			if (sloganNumSpam != 0) {
+				isSloganFreeOfSpam = 100 * sloganNumSpam / sloganSplitted.length < spamThreshold;
+			}
+
+			errors.state(request, isSloganFreeOfSpam, "slogan", "patron.banner.spamWords");
+		}
 
 	}
 

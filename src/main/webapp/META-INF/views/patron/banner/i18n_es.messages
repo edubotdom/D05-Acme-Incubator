@@ -22,3 +22,4 @@ patron.banner.form.button.update=Actualizar
 patron.banner.form.button.delete = Eliminar
 
 patron.banner.list.label.slogan = Eslogan
+patron.banner.spamWords = No introduzca palabras restringidas
