@@ -40,6 +40,20 @@
 		<property name="cvv" value="678" />
 	</bean>
 
+	<bean id="card04" class="acme.entities.cards.Card">
+		<property name="holder" value="Holder 04" />
+		<property name="number" value="5500000000000004" />
+		<property name="brand" value="Brand 04" />
+		<property name="cvv" value="789" />
+	</bean>
+
+	<bean id="card05" class="acme.entities.cards.Card">
+		<property name="holder" value="Holder 05" />
+		<property name="number" value="5500000000000004" />
+		<property name="brand" value="Brand 05" />
+		<property name="cvv" value="375" />
+	</bean>
+
 	<!-- Authenticated Users -->
 
 	<bean name="authenticated1UserAccount" class="acme.framework.entities.UserAccount">
@@ -495,7 +509,14 @@
 		<property name="author" value="Eduardo Miguel Botía Domingo"/>
 		<property name="title" value="Title 4"/>
 		<property name="text_body" value="Mensaje de prueba 4"/>
-		
+	</bean>
+
+	<bean id="botiaBulletin05" class="acme.entities.botia_bulletins.Botia_bulletin">
+		<property name="moment" value="2017/11/09 12:43"/>
+		<property name="expiring_date" value="2018/11/21 18:23"/>
+		<property name="author" value="Eduardo Miguel Botía Domingo"/>
+		<property name="title" value="Title 5"/>
+		<property name="text_body" value="Mensaje de prueba 5"/>
 	</bean>
 	
 	<!-- Notice's beans -->
@@ -542,6 +563,17 @@
 		</property>
 	</bean>
 
+	<bean id="notice05" class="acme.entities.notices.Notice">
+		<property name="header" value="http://www.lsi.us.es/imagenes/rotulo-lsi-grande3.jpg" />
+		<property name="title" value="Sample notice 05" />
+		<property name="creation" value="2018/10/02 6:20" />
+		<property name="deadline" value="2024/12/08 21:37" />
+		<property name="body" value="http://www.lsi.us.es/noticias.php" />
+		<property name="related">
+			<null />
+		</property>
+	</bean>
+
 	<!-- Inquiries' beans -->
 
 	<bean id="inquiry01" class="acme.entities.inquiries.Inquiry">
@@ -576,8 +608,26 @@
 		<property name="creation" value="2014/12/14 18:00" />
 		<property name="deadline" value="2019/05/28 14:33" />
 		<property name="description" value="This is a description of a sample Inquiry" />
-		<property name="money" value="1842 EUR" />
+		<property name="money" value="6587 EUR" />
 		<property name="contact" value="incubator3@acme.com" />
+	</bean>
+
+	<bean id="inquiry06" class="acme.entities.inquiries.Inquiry">
+		<property name="title" value="Sample Inquiry 06" />
+		<property name="creation" value="2019/08/06 18:00" />
+		<property name="deadline" value="2025/05/14 14:33" />
+		<property name="description" value="This is a description of a sample Inquiry" />
+		<property name="money" value="2547 EUR" />
+		<property name="contact" value="incubator6@acme.com" />
+	</bean>
+
+	<bean id="inquiry05" class="acme.entities.inquiries.Inquiry">
+		<property name="title" value="Sample Inquiry 05" />
+		<property name="creation" value="2020/06/03 12:14" />
+		<property name="deadline" value="2024/10/10 12:14" />
+		<property name="description" value="This is a description of a sample Inquiry" />
+		<property name="money" value="2541 EUR" />
+		<property name="contact" value="incubator5@acme.com" />
 	</bean>
 
 	<!-- Overtures' beans -->
@@ -618,10 +668,28 @@
 		<property name="contact" value="incubator3@acme.com" />
 	</bean>
 
+	<bean id="overture06" class="acme.entities.overtures.Overture">
+		<property name="title" value="Sample overture 06" />
+		<property name="creation" value="2020/06/03 12:14" />
+		<property name="deadline" value="2024/10/10 12:14" />
+		<property name="description" value="This is a description of a sample overture" />
+		<property name="money" value="3698 EUR" />
+		<property name="contact" value="incubator6@acme.com" />
+	</bean>
+
+	<bean id="overture05" class="acme.entities.overtures.Overture">
+		<property name="title" value="Sample overture 05" />
+		<property name="creation" value="2014/12/20 16:58" />
+		<property name="deadline" value="2023/05/08 04:55" />
+		<property name="description" value="This is a description of a sample overture" />
+		<property name="money" value="1247 EUR" />
+		<property name="contact" value="incubator5@acme.com" />
+	</bean>
+
 	<!-- Technologies' beans -->
 	<bean id="technology01" class="acme.entities.technologies.Technology">
 		<property name="title" value="Sample technology record 01" />
-		<property name="sector" value="Sector 01" />
+		<property name="sector" value="Technology" />
 		<property name="inventor" value="Inventor 01" />
 		<property name="description" value="This is a description of a sample technology record " />
 		<property name="website" value="http://www.lsi.us.es/" />
@@ -632,7 +700,7 @@
 	
 	<bean id="technology02" class="acme.entities.technologies.Technology">
 		<property name="title" value="Sample technology record 02" />
-		<property name="sector" value="Sector 02" />
+		<property name="sector" value="Science" />
 		<property name="inventor" value="Inventor 02" />
 		<property name="description" value="This is a description of a sample technology record " />
 		<property name="website" value="http://www.lsi.us.es/" />
@@ -643,7 +711,7 @@
 	
 	<bean id="technology03" class="acme.entities.technologies.Technology">
 		<property name="title" value="Sample technology record 03" />
-		<property name="sector" value="Sector 01" />
+		<property name="sector" value="Science" />
 		<property name="inventor" value="Inventor 03" />
 		<property name="description" value="This is a description of a sample technology record " />
 		<property name="website" value="http://www.lsi.us.es/" />
@@ -654,7 +722,7 @@
 	
 	<bean id="technology04" class="acme.entities.technologies.Technology">
 		<property name="title" value="Sample technology record 04" />
-		<property name="sector" value="Sector 02" />
+		<property name="sector" value="Arts" />
 		<property name="inventor" value="Inventor 01" />
 		<property name="description" value="This is a description of a sample technology record " />
 		<property name="website" value="http://www.lsi.us.es/" />
@@ -663,11 +731,22 @@
 		<property name="stars" value="4.5" />
 	</bean>
 	
+	<bean id="technology05" class="acme.entities.technologies.Technology">
+		<property name="title" value="Sample technology record 05" />
+		<property name="sector" value="Technology" />
+		<property name="inventor" value="Inventor 02" />
+		<property name="description" value="This is a description of a sample technology record " />
+		<property name="website" value="http://www.lsi.us.es/" />
+		<property name="contact" value="incubator5@acme.com" />
+		<property name="source" value="closed-source" />
+		<property name="stars" value="4.5" />
+	</bean>
+	
 	<!-- Tools' beans -->
 
 	<bean id="tool01" class="acme.entities.tools.Tool">
 		<property name="title" value="Sample tool record 01" />
-		<property name="sector" value="Sector 01" />
+		<property name="sector" value="Health" />
 		<property name="inventor" value="Inventor 01" />
 		<property name="description" value="This is a description of a sample technology record " />
 		<property name="website" value="http://www.lsi.us.es/" />
@@ -678,7 +757,7 @@
 	
 	<bean id="tool02" class="acme.entities.tools.Tool">
 		<property name="title" value="Sample tool record 02" />
-		<property name="sector" value="Sector 02" />
+		<property name="sector" value="Health" />
 		<property name="inventor" value="Inventor 02" />
 		<property name="description" value="This is a description of a sample technology record " />
 		<property name="website" value="http://www.lsi.us.es/" />
@@ -689,7 +768,7 @@
 	
 	<bean id="tool03" class="acme.entities.tools.Tool">
 		<property name="title" value="Sample tool record 03" />
-		<property name="sector" value="Sector 01" />
+		<property name="sector" value="Business" />
 		<property name="inventor" value="Inventor 03" />
 		<property name="description" value="This is a description of a sample technology record " />
 		<property name="website" value="http://www.lsi.us.es/" />
@@ -700,15 +779,25 @@
 	
 	<bean id="tool04" class="acme.entities.tools.Tool">
 		<property name="title" value="Sample tool record 04" />
-		<property name="sector" value="Sector 02" />
+		<property name="sector" value="Arts" />
 		<property name="inventor" value="Inventor 01" />
 		<property name="description" value="This is a description of a sample technology record " />
 		<property name="website" value="http://www.lsi.us.es/" />
 		<property name="contact" value="incubator4@acme.com" />
-		<property name="source" value="closed-source" />
-		<property name="stars" value="4.5" />
+		<property name="source" value="open-source" />
+		<property name="stars" value="1.5" />
 	</bean>
 
+	<bean id="tool05" class="acme.entities.tools.Tool">
+		<property name="title" value="Sample tool record 05" />
+		<property name="sector" value="Science" />
+		<property name="inventor" value="Inventor 01" />
+		<property name="description" value="This is a description of a sample technology record " />
+		<property name="website" value="http://www.lsi.us.es/" />
+		<property name="contact" value="incubator5@acme.com" />
+		<property name="source" value="open-source" />
+		<property name="stars" value="4.5" />
+	</bean>
 
 	<!--Challenges' beans -->
 	
@@ -821,6 +910,22 @@
 		<property name="patron" ref="patron2" />
 	</bean>
 
+	<bean id="banner04" class="acme.entities.banners.Banner">
+		<property name="picture" value="http://www.lsi.us.es/imagenes/rotulo-lsi-grande3.jpg" />
+		<property name="slogan" value="Banner 04" />
+		<property name="url" value="http://www.lsi.us.es/" />
+		<property name="card" ref="card04" />
+		<property name="patron" ref="patron1" />
+	</bean>
+
+	<bean id="banner05" class="acme.entities.banners.Banner">
+		<property name="picture" value="http://www.lsi.us.es/imagenes/rotulo-lsi-grande3.jpg" />
+		<property name="slogan" value="Banner 05" />
+		<property name="url" value="http://www.lsi.us.es/" />
+		<property name="card" ref="card05" />
+		<property name="patron" ref="patron1" />
+	</bean>
+
 	<!-- Activity' beans -->
 	<bean id="activity01" class="acme.entities.activities.Activity">
 		<property name="title" value="Activity 01" />
@@ -870,6 +975,22 @@
 		<property name="round" ref="round03"/>			
 	</bean>
 
+	<bean id="activity07" class="acme.entities.activities.Activity">
+		<property name="title" value="Activity 07" />
+		<property name="start" value="2025/04/22 18:00" />
+		<property name="end" value="2025/06/14 20:00" />
+		<property name="budget" value="10000€" />	
+		<property name="round" ref="round04"/>			
+	</bean>
+	
+	<bean id="activity08" class="acme.entities.activities.Activity">
+		<property name="title" value="Activity 08" />
+		<property name="start" value="2025/07/22 01:00" />
+		<property name="end" value="2025/09/14 23:00" />
+		<property name="budget" value="15000€" />	
+		<property name="round" ref="round04"/>			
+	</bean>
+
 	<!-- Rounds' beans -->
 	<bean id="round01" class="acme.entities.rounds.Round">
 		<property name="ticker" value="TEC-20-123456" />
@@ -907,10 +1028,22 @@
 		<property name="entrepreneur" ref="entrepreneur2"/>
 	</bean>	
 	
+	<bean id="round04" class="acme.entities.rounds.Round">
+		<property name="ticker" value="HEA-20-987654" />
+		<property name="creation" value="2019/12/10 16:00" />
+		<property name="kind" value="SERIES-B" />	
+		<property name="title" value="Round03" />
+		<property name="description" value="Description03" />
+		<property name="money" value="25000€" />		
+		<property name="information" value="http://www.lsi.us.es/" />
+		<property name="status" value="true" />			
+		<property name="entrepreneur" ref="entrepreneur2"/>
+	</bean>	
+	
 	<!-- Applications' beans -->
 	<bean id="application01" class="acme.entities.applications.Application">
 		<property name="ticker" value="TEC-20-123457" />
-		<property name="creation" value="2019/12/10 16:00" />
+		<property name="creation" value="2020/07/19 06:20" />
 		<property name="statement" value="Statement01" />
 		<property name="offer" value="35000€" />	
 		<property name="status" value="accepted" />
@@ -921,7 +1054,7 @@
 	
 	<bean id="application02" class="acme.entities.applications.Application">
 		<property name="ticker" value="TEC-20-123458" />
-		<property name="creation" value="2019/05/11 19:10" />
+		<property name="creation" value="2020/07/23 09:20" />
 		<property name="statement" value="Statement02" />
 		<property name="offer" value="25000€" />	
 		<property name="status" value="rejected" />
@@ -932,7 +1065,7 @@
 
 	<bean id="application03" class="acme.entities.applications.Application">
 		<property name="ticker" value="ART-20-123459" />
-		<property name="creation" value="2019/10/15 21:56" />
+		<property name="creation" value="2020/07/20 19:34" />
 		<property name="statement" value="Statement03" />
 		<property name="offer" value="5500€" />	
 		<property name="status" value="accepted" />
@@ -943,13 +1076,24 @@
 
 	<bean id="application04" class="acme.entities.applications.Application">
 		<property name="ticker" value="TEC-20-123459" />
-		<property name="creation" value="2019/10/15 10:56" />
+		<property name="creation" value="2020/07/24 10:30" />
 		<property name="statement" value="Statement04" />
 		<property name="offer" value="27000€" />	
 		<property name="status" value="rejected" />	
 		<property name="justification" value="Justification 3"/>
 		<property name="round" ref="round01"/>
 		<property name="investor" ref="investor2"/>
+	</bean>
+
+	<bean id="application05" class="acme.entities.applications.Application">
+		<property name="ticker" value="HEA-20-123459" />
+		<property name="creation" value="2020/07/25 11:34" />
+		<property name="statement" value="Statement04" />
+		<property name="offer" value="28000€" />	
+		<property name="status" value="pending" />	
+		<property name="justification" value="Justification 5"/>
+		<property name="round" ref="round04"/>
+		<property name="investor" ref="investor1"/>
 	</bean>
 
 	<!-- Accountings' beans -->
@@ -980,6 +1124,24 @@
 		<property name="round" ref="round03"/>
 	</bean>
 
+	<bean id="accounting04" class="acme.entities.accountings.Accounting">
+		<property name="title" value="Accounting record 04" />
+		<property name="creation" value="2020/05/10 16:00" />
+		<property name="status" value="true" />
+		<property name="body" value="Sample body of an accounting" />		
+		<property name="bookkeeper" ref="bookkeeper2"/>
+		<property name="round" ref="round01"/>
+	</bean>
+
+	<bean id="accounting05" class="acme.entities.accountings.Accounting">
+		<property name="title" value="Accounting record 05" />
+		<property name="creation" value="2020/03/18 12:18" />
+		<property name="status" value="true" />
+		<property name="body" value="Sample body of an accounting" />		
+		<property name="bookkeeper" ref="bookkeeper1"/>
+		<property name="round" ref="round02"/>
+	</bean>
+
 	<!-- Forum' beans -->
 	<bean id="forum01" class="acme.entities.forums.Forum">
 	<property name="round" ref="round01"/>
@@ -995,7 +1157,12 @@
 	<property name="round" ref="round03"/>
 	<property name="creator" ref="entrepreneur2Authenticated"/>
 	</bean>
-
+	
+	<bean id="forum04" class="acme.entities.forums.Forum">
+	<property name="round" ref="round04"/>
+	<property name="creator" ref="entrepreneur2Authenticated"/>
+	</bean>
+	
 	<!-- Messages' beans -->
 	<bean id="message01" class="acme.entities.messages.Message">
 		<property name="title" value="title01"/>
@@ -1032,6 +1199,24 @@
 		<property name="user" ref="entrepreneur2Authenticated"/>
 		<property name="forum" ref="forum03"/>	
 	</bean>
+
+	<bean id="message05" class="acme.entities.messages.Message">
+		<property name="title" value="title05"/>
+		<property name="moment" value="2020/07/14 12:54"/>
+		<property name="tags" value="#tagFive"/>
+		<property name="body" value="Body of a message."/>
+		<property name="user" ref="entrepreneur2Authenticated"/>
+		<property name="forum" ref="forum04"/>	
+	</bean>
+
+	<bean id="message07" class="acme.entities.messages.Message">
+		<property name="title" value="title07"/>
+		<property name="moment" value="2020/07/14 12:54"/>
+		<property name="tags" value="#tagSix"/>
+		<property name="body" value="Body of a message."/>
+		<property name="user" ref="investor1Authenticated"/>
+		<property name="forum" ref="forum01"/>	
+	</bean>
 	
 	<!-- Participant -->
 
@@ -1054,6 +1239,11 @@
 	<bean name="participant5" class="acme.entities.participants.Participant">
 		<property name="user" ref="entrepreneur1Authenticated" />
 		<property name="forum" ref="forum01" />
+	</bean>
+
+	<bean name="participant6" class="acme.entities.participants.Participant">
+		<property name="user" ref="entrepreneur2Authenticated" />
+		<property name="forum" ref="forum04" />
 	</bean>
 
 </beans>

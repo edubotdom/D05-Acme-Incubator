@@ -80,7 +80,7 @@
 			value="sex,hardcore,viagra,cialis,nigeria,you've won,million dollar,
 		sexo,duro,viagra,cialis,nigeria,has ganado,millón de euros" />
 		<property name="threshold" value="2.5" />
-		<property name="sectors" value="Technology, Science, Arts, Business, Health" />
+		<property name="sectors" value="Technology,Science,Arts,Business,Health" />
 	</bean>
 	
 	

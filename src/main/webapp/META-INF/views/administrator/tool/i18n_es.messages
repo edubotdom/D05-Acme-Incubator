@@ -18,6 +18,8 @@ administrator.tool.form.label.source = Código fuente:
 administrator.tool.form.label.stars = Valoración, de -5 a 5:
 administrator.tool.form.button.return = Volver
 
+administrator.tool.incorrectSector = Ha introducido un sector no registrado
+
 administrator.tool.form.button.create=Crear
 administrator.tool.form.button.update=Actualizar
 administrator.tool.form.button.delete = Eliminar

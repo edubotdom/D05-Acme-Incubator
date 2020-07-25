@@ -1,6 +1,10 @@
 
 package acme.features.administrator.tool;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +68,11 @@ public class AdministratorToolUpdateService implements AbstractUpdateService<Adm
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		String[] sectorWords = this.repository.findCustomization().getSectors().trim().split(",");
+		List<String> sectors = IntStream.range(0, sectorWords.length).boxed().map(x -> sectorWords[x].trim()).collect(Collectors.toList());
+
+		errors.state(request, sectors.contains(entity.getSector()), "sector", "administrator.tool.incorrectSector");
 
 	}
 

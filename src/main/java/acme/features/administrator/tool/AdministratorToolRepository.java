@@ -17,6 +17,7 @@ import java.util.Collection;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.entities.customization.Customization;
 import acme.entities.tools.Tool;
 import acme.framework.repositories.AbstractRepository;
 
@@ -34,4 +35,7 @@ public interface AdministratorToolRepository extends AbstractRepository {
 
 	@Query("select n from Tool n group by n.stars")
 	Collection<Tool> findByStars();
+
+	@Query("select c from Customization c")
+	Customization findCustomization();
 }
