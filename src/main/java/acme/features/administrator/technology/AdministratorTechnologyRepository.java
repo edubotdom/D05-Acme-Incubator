@@ -17,6 +17,7 @@ import java.util.Collection;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.entities.customization.Customization;
 import acme.entities.technologies.Technology;
 import acme.framework.repositories.AbstractRepository;
 
@@ -34,4 +35,7 @@ public interface AdministratorTechnologyRepository extends AbstractRepository {
 
 	@Query("select n from Technology n group by n.stars")
 	Collection<Technology> findByStars();
+
+	@Query("select c from Customization c")
+	Customization findCustomization();
 }

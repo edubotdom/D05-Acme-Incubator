@@ -22,5 +22,7 @@ administrator.technology.form.button.create=Create
 administrator.technology.form.button.update=Update
 administrator.technology.form.button.delete = Delete
 
+administrator.technology.incorrectSector = You must introduce a correct sector
+
 administrator.technology.list.label.title = Title
 administrator.technology.list.label.stars = Valoration, from -5 to 5

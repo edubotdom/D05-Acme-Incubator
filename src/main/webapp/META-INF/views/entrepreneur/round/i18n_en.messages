@@ -46,3 +46,4 @@ entrepreneur.round.repeatedTicker = Ticker identification must be unique.
 entrepreneur.round.activitiesBudgetNotMatchRoundMoney = Before publishing, check activities budget match round money
 entrepreneur.round.spamInText = No puede introducir palabras restringidas en este campo
 entrepreneur.round.roundWithApplicationsCantBeDeleted = No puede eliminar rondas de inversión con aplicaciones
+entrepreneur.round.incorrectSector = El sector introducido en el identificador no se encuentra registrado
