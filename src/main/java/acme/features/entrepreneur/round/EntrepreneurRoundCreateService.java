@@ -3,6 +3,9 @@ package acme.features.entrepreneur.round;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -88,6 +91,16 @@ public class EntrepreneurRoundCreateService implements AbstractCreateService<Ent
 			String shortYear = year.toString().substring(2);
 			String shortTickerYear = entity.getTicker().trim().split("-")[1];
 			errors.state(request, shortTickerYear.equals(shortYear), "ticker", "entrepreneur.round.incorrectYearOfTicker");
+
+			boolean isTickerSectorCorrect = false;
+			if (entity.getTicker().trim().split("-")[0].length() >= 3) {
+				String tickerSector = entity.getTicker().trim().split("-")[0].substring(0, 3);
+				String[] sectorWords = this.repository.findCustomization().getSectors().trim().split(",");
+				List<String> sectors = IntStream.range(0, sectorWords.length).boxed().map(x -> sectorWords[x].trim()).map(s -> s.substring(0, 3).toUpperCase()).collect(Collectors.toList());
+				isTickerSectorCorrect = sectors.contains(tickerSector);
+			}
+			errors.state(request, isTickerSectorCorrect, "ticker", "entrepreneur.round.incorrectSector");
+
 		}
 		if (entity.getMoney() != null) {
 			boolean isCurrencyCorrect = entity.getMoney().getCurrency().equals("EUR") || entity.getMoney().getCurrency().equals("€");

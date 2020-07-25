@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.entities.activities.Activity;
 import acme.entities.applications.Application;
+import acme.entities.customization.Customization;
 import acme.entities.roles.Investor;
 import acme.framework.repositories.AbstractRepository;
 
@@ -25,4 +26,7 @@ public interface InvestorApplicationRepository extends AbstractRepository {
 
 	@Query("select d from Activity d where d.round.id = ?1")
 	Collection<Activity> findManyActivitiesByRound(int id);
+
+	@Query("select c from Customization c")
+	Customization findCustomization();
 }
